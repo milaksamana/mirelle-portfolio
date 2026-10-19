@@ -53,7 +53,7 @@ export default function DynamicIslandNav() {
       className={`dynamic-island${isOpen ? ' is-expanded' : ''}`}
       ref={rootRef}
       aria-label="Main navigation"
-      onPointerLeave={() => { setHovered(false); setPinned(false) }}
+      onPointerLeave={(event) => { setHovered(false); if (event.pointerType !== 'touch') setPinned(false) }}
       onFocusCapture={() => setFocused(true)}
       onBlurCapture={onBlurCapture}
     >
