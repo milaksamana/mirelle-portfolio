@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import ThemeGlyph from './ThemeGlyph'
 import {
@@ -40,7 +40,7 @@ export default function Rail() {
   const navListRef = useRef<HTMLUListElement>(null)
   const indicatorRef = useRef<HTMLSpanElement>(null)
 
-  const moveIndicator = (target: HTMLElement | null) => {
+  const moveIndicator = useCallback((target: HTMLElement | null) => {
     const list = navListRef.current
     const indicator = indicatorRef.current
     if (!list || !indicator || !target) return
@@ -50,12 +50,12 @@ export default function Rail() {
     const height = targetRect.height
     indicator.style.transform = `translate3d(0, ${y}px, 0) scaleY(${height / 54})`
     indicator.dataset.visible = 'true'
-  }
+  }, [])
 
-  const parkIndicator = () => {
+  const parkIndicator = useCallback(() => {
     const list = navListRef.current
     moveIndicator(list?.querySelector<HTMLElement>('.rail__link[aria-current="page"]') ?? null)
-  }
+  }, [moveIndicator])
 
   useLayoutEffect(() => {
     const list = navListRef.current
@@ -64,7 +64,7 @@ export default function Rail() {
     const observer = new ResizeObserver(parkIndicator)
     observer.observe(list)
     return () => observer.disconnect()
-  }, [pathname])
+  }, [pathname, parkIndicator])
 
   // The pre-paint script owns the real value; read it once mounted so the
   // button shows the icon for the action, not for the current state.
