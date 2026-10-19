@@ -29,8 +29,8 @@ export type Profile = {
 export const profile: Profile = {
   name: 'Mirelle Laksamana',
   firstName: 'Mirelle',
-  handle: 'Aspiring Virtual Assistant',
-  role: 'Customer Support · Administrative & Creative Support',
+  handle: 'Customer Support Professional',
+  role: 'Administrative & Creative Support',
   avatarSrc: '/avatar.svg',
   // No verification badge is shown; no formal VA credential is being claimed.
   verifiedLabel: '',
