@@ -8,7 +8,7 @@ export default function ContactGrid() {
       <header className="va-page__head">
         <span className="va-eyebrow">Contact</span>
         <h1 id="contact-title">Let’s talk about the support you need.</h1>
-        <p>I’m preparing this portfolio for General VA opportunities. Contact details will be added once I’ve confirmed the public channels I want to use.</p>
+        <p>For General VA opportunities, customer support, administrative assistance, or simple creative tasks, email me and share a little about the support you need.</p>
       </header>
       <div className="va-contact-panel">
         <span className="va-contact-panel__sun" aria-hidden="true">✳</span>
@@ -17,7 +17,10 @@ export default function ContactGrid() {
           <h2>What would make your workday easier?</h2>
           <p>Whether you need help with customer inquiries, admin organization, or simple creative tasks, a clear brief helps me understand the goal and decide whether the task is a good fit.</p>
           {profile.email ? (
-            <a className="va-button" href={`mailto:${profile.email}`}>Email me <EnvelopeSimple size={17} aria-hidden="true" /></a>
+            <div className="va-contact-actions">
+              <a className="va-button" href={`mailto:${profile.email}`}>Email me <EnvelopeSimple size={17} aria-hidden="true" /></a>
+              <a className="va-contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
+            </div>
           ) : (
             <span className="va-contact-pending"><EnvelopeSimple size={17} aria-hidden="true" /> Direct contact link to be added before launch</span>
           )}
