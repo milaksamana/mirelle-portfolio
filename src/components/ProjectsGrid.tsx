@@ -1,9 +1,9 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type RefObject } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from '@/components/slab'
 import WorkTicker from './WorkTicker'
 
-function useWorkSpotlight(ref: React.RefObject<HTMLElement | null>) {
+function useWorkSpotlight(ref: RefObject<HTMLElement | null>) {
   useEffect(() => {
     const root = ref.current
     if (!root) return
