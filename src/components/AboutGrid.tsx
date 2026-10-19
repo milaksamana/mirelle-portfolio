@@ -100,16 +100,6 @@ export default function AboutGrid() {
           ))}
         </ol>
       </section>
-      <section className="va-education" aria-labelledby="education-title">
-        <span className="va-eyebrow">Education & development</span>
-        <h2 id="education-title">A business foundation, with room to grow.</h2>
-        <ul>
-          <li><strong>BS Entrepreneurship</strong> · PUP San Pedro Campus · 2022–2025</li>
-          <li><strong>BS Accountancy studies</strong> · PUP San Pedro Campus · 2020–2022 (two years of study)</li>
-          <li><strong>Bookkeeping training</strong> · In progress; not yet a completed certification</li>
-          <li><strong>Internship / OJT</strong> · Northpoint Development Bank · completed</li>
-        </ul>
-      </section>
       <div className="va-endnote">
         <p>My next step is to bring these skills into a General VA role, keep learning, and build trust through reliable day-to-day support.</p>
         <Link to="/services" className="va-button">Explore my services <ArrowUpRight size={17} aria-hidden="true" /></Link>
