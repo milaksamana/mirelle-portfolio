@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type CSSProperties } from 'react'
 
 const QUOTE = 'Working together should feel like a shared effort: clear communication, thoughtful support, and a willingness to keep learning as we go.'
 
@@ -32,7 +32,7 @@ export default function PullQuote() {
       </svg>
       <blockquote className="pull-quote__text" aria-label={QUOTE}>
         {words.map((word, index) => (
-          <span className="pull-quote__word" key={`${word}-${index}`} style={{ ['--delay' as string]: `${index * 85}ms` }} aria-hidden="true">
+          <span className="pull-quote__word" key={`${word}-${index}`} style={{ '--delay': `${index * 85}ms` } as CSSProperties} aria-hidden="true">
             {word}{index < words.length - 1 ? ' ' : ''}
           </span>
         ))}
