@@ -445,3 +445,6 @@
   .home-story__scene { margin-bottom: 0; }
   .home-story__steps { margin-top: -56vh; }
 }
+
+/* Keep the full services page as one Lenis content root; no overflow here so sticky remains free. */
+.services-page-wrap { position: relative; min-width: 0; overflow: visible; }
