@@ -666,14 +666,15 @@
   overflow: visible;
 }
 .dynamic-island__surface {
+  --island-ink: #FFF8E8;
   position: absolute;
   inset: 0;
   overflow: hidden;
   clip-path: inset(13% calc(50% - 118px) 13% calc(50% - 118px) round 99px);
   border: 1px solid color-mix(in srgb, var(--orange) 26%, var(--navy));
   border-radius: 25px;
-  background: var(--navy);
-  color: var(--cream);
+  background: var(--panel-dark);
+  color: var(--island-ink);
   box-shadow: 0 13px 36px -18px rgba(50,36,8,.42), inset 0 1px 0 rgba(255,255,255,.12);
   transition: clip-path 700ms linear(0, 0.083 5.6%, 0.457 16.7%, 0.774 27.8%, 0.944 38.9%, 1.008 50%, 1.02 61.1%, 1.014 72.2%, 1 100%), box-shadow 300ms ease;
 }
@@ -693,7 +694,7 @@
   height: 100%;
   padding: 0 18px;
   border: 0;
-  color: var(--cream);
+  color: var(--island-ink);
   background: transparent;
   cursor: pointer;
   opacity: 1;
@@ -775,6 +776,13 @@
   position: absolute; bottom: calc(100% + 10px); top: auto; right: -6px; z-index: 2500;
   width: 232px; padding: 6px; border: 1px solid var(--line); border-radius: 16px;
   color: var(--navy); background: var(--paper); box-shadow: 0 22px 50px -22px rgba(50,36,8,.45);
+  transform: translateY(6px) scale(.98); transform-origin: bottom right;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: transform 170ms ease, opacity 170ms ease, visibility 0s linear 170ms;
+}
+.dynamic-island__quickmenu .qmenu__panel.is-open {
+  transform: none; opacity: 1; visibility: visible; pointer-events: auto;
+  transition: transform 190ms ease, opacity 190ms ease, visibility 0s;
 }
 .dynamic-island__quickmenu .qmenu__row { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 44px; padding: 0 12px; border-radius: 10px; color: var(--navy); }
 .dynamic-island__quickmenu .qmenu__row:hover { background: var(--tint); }
@@ -794,7 +802,7 @@
 .dynamic-island__close {
   display: grid; place-items: center; flex: 0 0 28px; width: 28px; height: 28px; padding: 0;
   border: 1px solid rgba(255,255,255,.16); border-radius: 50%; background: rgba(255,255,255,.06);
-  color: var(--cream); cursor: pointer;
+  color: #FFF8E8; cursor: pointer;
 }
 .dynamic-island__close:hover { background: rgba(255,255,255,.14); }
 .dynamic-island:not(.is-expanded) .dynamic-island__expanded { visibility: hidden; }
