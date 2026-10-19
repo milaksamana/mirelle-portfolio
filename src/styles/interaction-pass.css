@@ -985,3 +985,13 @@
   .dynamic-island__links { max-width: calc(100% - 64px); }
   .dynamic-island__close { right: 8px; }
 }
+
+
+/* Space each animated word explicitly: trailing spaces inside inline-block
+   spans are discarded by the browser, which made the quote look concatenated. */
+.pull-quote__word {
+  margin-right: 0.24em;
+}
+.pull-quote__word:last-child {
+  margin-right: 0;
+}
