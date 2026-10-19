@@ -122,7 +122,7 @@ export default function Rail() {
 
         <nav className="rail__nav" aria-label="Sections">
           <ul ref={navListRef} onPointerLeave={parkIndicator}>
-            <span className="rail__indicator" ref={indicatorRef} aria-hidden="true" />
+            <li className="rail__indicator-holder" aria-hidden="true"><span className="rail__indicator" ref={indicatorRef} /></li>
             {RAIL_LINKS.map(({ label, to, Icon }) => (
               <li key={to}>
                 <NavLink
