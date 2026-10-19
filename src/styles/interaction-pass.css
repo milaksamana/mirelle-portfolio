@@ -818,7 +818,7 @@
   .dynamic-island__expanded { gap: 4px; padding-inline: 6px; }
   .dynamic-island__avatar { width: 22px; height: 22px; flex-basis: 22px; }
   .dynamic-island__link { padding-inline: 7px; font-size: 10.5px; }
-  .dynamic-island__quickmenu { display: none; }
+  .dynamic-island__avatar { display: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   .dynamic-island__surface, .dynamic-island__collapsed, .dynamic-island__expanded,
