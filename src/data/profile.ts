@@ -1,7 +1,6 @@
 /**
  * Mirelle's portfolio profile.
- * Keep contact and social links blank until the owner adds the public details
- * she wants prospective clients to see.
+ * Only include contact and social details that the owner has approved for public use.
  */
 import { Briefcase, SealCheck, Clock, type Icon } from '@/components/slab'
 
