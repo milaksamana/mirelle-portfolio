@@ -36,6 +36,11 @@ export default function TopNav() {
     moveIndicator(list?.querySelector<HTMLElement>('.topnav__link[aria-current="page"]') ?? null)
   }, [moveIndicator])
 
+  const fadeAndPark = useCallback(() => {
+    parkOnCurrent()
+    if (indicatorRef.current) indicatorRef.current.dataset.visible = 'false'
+  }, [parkOnCurrent])
+
   useLayoutEffect(() => {
     const list = listRef.current
     if (!list) return
@@ -61,7 +66,7 @@ export default function TopNav() {
         </Link>
 
         <nav className="topnav__links" aria-label="Main navigation">
-          <ul ref={listRef} onPointerLeave={parkOnCurrent}>
+          <ul ref={listRef} onPointerLeave={fadeAndPark}>
             <li className="topnav__indicator-holder" aria-hidden="true">
               <span className="topnav__indicator" ref={indicatorRef} />
             </li>
