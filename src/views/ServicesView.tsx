@@ -1,9 +1,9 @@
 import ServicesGrid from '@/components/ServicesGrid'
 
 /**
- * Services is one glass sheet like Projects: the three-step method, the five
- * services with their marks, and the booking workflow. No ViewShell: the
- * grid supplies its own head and there is no footer to scroll to.
+ * Services uses a scroll-driven horizontal sequence on desktop. The section's
+ * JavaScript measures the track inside the shell scroller and falls back to a
+ * normal vertical stack on narrow screens and for reduced-motion preferences.
  */
 export default function ServicesView() {
   return <ServicesGrid />
