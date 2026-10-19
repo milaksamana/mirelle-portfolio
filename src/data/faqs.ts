@@ -15,7 +15,7 @@ export const FAQS: QA[] = [
   },
   {
     q: 'Where are you based?',
-    a: 'I am based in San Pedro, Laguna, Philippines (UTC+8). Availability and schedule can be discussed for each opportunity.',
+    a: 'I am based in San Pedro, Laguna, Philippines, and can coordinate scheduling using U.S. Eastern Time. Availability can be discussed for each opportunity.',
   },
   {
     q: 'How do we get started?',
