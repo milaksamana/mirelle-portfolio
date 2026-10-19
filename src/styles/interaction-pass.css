@@ -413,3 +413,28 @@
   .va-text-link { transition: none; }
   .va-text-link:hover { transform: none; }
 }
+
+
+/* Follow the content scroller, not the document window, on desktop. The
+   section stays tall for each horizontal pixel the track needs to travel. */
+@media (min-width: 1100px) {
+  .services-stage { min-height: 100vh; }
+  .services-stage__head { padding: 0 !important; margin: 0 !important; }
+}
+
+/* The scene and its text steps overlap by one viewport, not two. */
+.home-story__scene { margin-bottom: 0; }
+.pull-quote__word { display: inline-block; transition-delay: calc(550ms + var(--delay, 0ms)); }
+
+/* The indicator's holder is removed from list layout; it remains a semantic
+   list item so the navigation is valid HTML. */
+.rail__nav ul > .rail__indicator-holder {
+  display: block;
+  pointer-events: none;
+}
+.rail__indicator-holder .rail__indicator { display: block; }
+
+@media (max-width: 1099px) {
+  .home-story__scene { margin-bottom: 0; }
+  .home-story__steps { margin-top: -56vh; }
+}
