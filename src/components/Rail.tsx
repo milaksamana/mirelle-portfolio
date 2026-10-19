@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 import ThemeGlyph from './ThemeGlyph'
 import {
   HomeIcon,
@@ -36,6 +36,35 @@ export const RAIL_LINKS = [
 
 export default function Rail() {
   const [theme, setThemeState] = useState<Theme>('light')
+  const { pathname } = useLocation()
+  const navListRef = useRef<HTMLUListElement>(null)
+  const indicatorRef = useRef<HTMLSpanElement>(null)
+
+  const moveIndicator = (target: HTMLElement | null) => {
+    const list = navListRef.current
+    const indicator = indicatorRef.current
+    if (!list || !indicator || !target) return
+    const listRect = list.getBoundingClientRect()
+    const targetRect = target.getBoundingClientRect()
+    const y = targetRect.top - listRect.top
+    const height = targetRect.height
+    indicator.style.transform = `translate3d(0, ${y}px, 0) scaleY(${height / 54})`
+    indicator.dataset.visible = 'true'
+  }
+
+  const parkIndicator = () => {
+    const list = navListRef.current
+    moveIndicator(list?.querySelector<HTMLElement>('.rail__link[aria-current="page"]') ?? null)
+  }
+
+  useLayoutEffect(() => {
+    const list = navListRef.current
+    if (!list) return
+    parkIndicator()
+    const observer = new ResizeObserver(parkIndicator)
+    observer.observe(list)
+    return () => observer.disconnect()
+  }, [pathname])
 
   // The pre-paint script owns the real value; read it once mounted so the
   // button shows the icon for the action, not for the current state.
@@ -92,10 +121,17 @@ export default function Rail() {
         </div>
 
         <nav className="rail__nav" aria-label="Sections">
-          <ul>
+          <ul ref={navListRef} onPointerLeave={parkIndicator}>
+            <span className="rail__indicator" ref={indicatorRef} aria-hidden="true" />
             {RAIL_LINKS.map(({ label, to, Icon }) => (
               <li key={to}>
-                <NavLink to={to} end={to === '/'} className="rail__link">
+                <NavLink
+                  to={to}
+                  end={to === '/'}
+                  className="rail__link"
+                  onPointerEnter={(event) => moveIndicator(event.currentTarget)}
+                  onFocus={(event) => moveIndicator(event.currentTarget)}
+                >
                   <Icon size={21} />
                   {label}
                 </NavLink>
