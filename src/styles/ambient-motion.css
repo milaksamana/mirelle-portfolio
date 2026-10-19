@@ -67,3 +67,60 @@
     transform: none;
   }
 }
+
+
+/* Branded tool marks: comfortable hit-area, with neutral symbols for tool
+   categories that do not share one universal logo. */
+.home .tools-marquee__track {
+  gap: 14px !important;
+}
+.home .tools-marquee__item {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 10px !important;
+  padding: 5px 12px !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  white-space: nowrap;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+.home .tools-marquee__item:hover {
+  transform: translateY(-2px);
+  border-color: var(--line-strong) !important;
+  background: var(--paper);
+}
+.home .tools-marquee__logo {
+  display: grid;
+  flex: 0 0 32px;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  border-radius: 9px;
+  background: var(--white);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.home .tools-marquee__img {
+  display: block;
+  width: 22px !important;
+  height: 22px !important;
+  max-width: 22px;
+  object-fit: contain;
+}
+.home .tools-marquee__generic-icon {
+  color: var(--orange-ink);
+}
+.home .tools-marquee__label {
+  color: var(--navy);
+}
+@media (max-width: 640px) {
+  .home .tools-marquee__track { gap: 10px !important; }
+  .home .tools-marquee__item { gap: 8px !important; padding: 4px 9px !important; }
+  .home .tools-marquee__logo { flex-basis: 28px; width: 28px; height: 28px; }
+  .home .tools-marquee__img { width: 20px !important; height: 20px !important; max-width: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home .tools-marquee__item { transition: none; }
+  .home .tools-marquee__item:hover { transform: none; }
+}
