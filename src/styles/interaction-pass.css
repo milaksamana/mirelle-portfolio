@@ -935,3 +935,9 @@
   .va-timeline::after { transform: scaleY(1); transition: none; }
   .va-timeline__dot, .va-timeline__card { opacity: 1; transform: none; transition: none; }
 }
+
+
+.dynamic-island:focus-within .dynamic-island__surface {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--orange) 38%, transparent), 0 22px 48px -20px rgba(50,36,8,.48);
+}
