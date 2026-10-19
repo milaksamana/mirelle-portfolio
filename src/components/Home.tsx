@@ -6,6 +6,8 @@ import HomeBento from './HomeBento'
 import { HomeProfile, HomeStats, HomeExplore } from './HomeMobile'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { useIsPhone } from '@/hooks/useMediaQuery'
+import HomeStory from './HomeStory'
+import PullQuote from './PullQuote'
 
 /**
  * Home. One viewport, three bands, no scroll:
@@ -69,6 +71,9 @@ export default function Home() {
           <ToolsMarquee />
         </div>
       </div>
+
+      {!phone && <HomeStory />}
+      <PullQuote />
 
       {phone ? (
         <HomeExplore />
