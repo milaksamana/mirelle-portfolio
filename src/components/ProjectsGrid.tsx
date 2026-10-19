@@ -1,77 +1,161 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowUpRight, CheckCircle, ClipboardText, ChatCircleDots, AirplaneTilt, CalendarBlank } from '@/components/slab'
+import { ArrowUpRight } from '@/components/slab'
+import WorkTicker from './WorkTicker'
 
-const SAMPLES = [
+function useWorkSpotlight(ref: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const root = ref.current
+    if (!root) return
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    root.style.setProperty('--x', '50%')
+    root.style.setProperty('--y', '42%')
+    if (reducedMotion.matches) return
+
+    let autoFrame = 0
+    let pointerFrame: number | null = null
+    let pointerX = 50
+    let pointerY = 42
+    let lastPointerAt = Number.NEGATIVE_INFINITY
+    const start = performance.now()
+
+    const onPointerMove = (event: PointerEvent) => {
+      if (event.pointerType === 'touch') return
+      const rect = root.getBoundingClientRect()
+      pointerX = event.clientX - rect.left
+      pointerY = event.clientY - rect.top
+      lastPointerAt = performance.now()
+      if (pointerFrame !== null) return
+      pointerFrame = requestAnimationFrame(() => {
+        root.style.setProperty('--x', `${pointerX}px`)
+        root.style.setProperty('--y', `${pointerY}px`)
+        pointerFrame = null
+      })
+    }
+
+    const tick = (now: number) => {
+      if (now - lastPointerAt > 2200) {
+        const t = (now - start) / 1000
+        const x = 50 + 29 * Math.sin(t * 0.17 + 0.4)
+        const y = 48 + 24 * Math.sin(t * 0.11 + 1.25)
+        root.style.setProperty('--x', `${x}%`)
+        root.style.setProperty('--y', `${y}%`)
+      }
+      autoFrame = requestAnimationFrame(tick)
+    }
+
+    root.addEventListener('pointermove', onPointerMove, { passive: true })
+    autoFrame = requestAnimationFrame(tick)
+    return () => {
+      root.removeEventListener('pointermove', onPointerMove)
+      cancelAnimationFrame(autoFrame)
+      if (pointerFrame !== null) cancelAnimationFrame(pointerFrame)
+    }
+  }, [ref])
+}
+
+const WORK = [
   {
     number: '01',
-    category: 'CUSTOMER SUPPORT · PRACTICE SAMPLE',
-    title: 'A clear, empathetic reply guide',
-    description: 'A self-created example of structuring a support response: acknowledge the concern, clarify what can be checked, explain the next step, and set expectations.',
-    sampleTitle: 'Example response framework',
-    lines: ['Acknowledge the customer’s concern', 'Confirm the information available', 'Explain the next step in plain language', 'Escalate when specialist review is needed'],
-    Icon: ChatCircleDots,
+    category: 'VIDEO EDITING',
+    title: 'Short-form video edit',
+    summary: 'A sample edit with pacing, cuts, and simple text treatment using tools such as CapCut or Filmora.',
+    note: 'YOUR VIDEO SAMPLE GOES HERE',
+    kind: 'video',
   },
   {
     number: '02',
-    category: 'ADMIN SUPPORT · PRACTICE SAMPLE',
-    title: 'A simple weekly task tracker',
-    description: 'A sample layout for keeping responsibilities visible without overcomplicating the workflow. The entries below are fictional practice data.',
-    sampleTitle: 'Weekly task overview · example data',
-    lines: ['Update contact spreadsheet · In progress', 'Prepare weekly content list · To do', 'Review open requests · Follow-up', 'Organize shared documents · Complete'],
-    Icon: ClipboardText,
+    category: 'BROCHURE DESIGN',
+    title: 'Company brochure package',
+    summary: 'A coordinated set of brochure pages prepared for one company, presented as one project rather than separate pieces.',
+    note: 'YOUR BROCHURE PAGES GO HERE',
+    kind: 'brochure',
   },
   {
     number: '03',
-    category: 'TRAVEL SUPPORT · PRACTICE SAMPLE',
-    title: 'An itinerary-change checklist',
-    description: 'A practice checklist inspired by travel support workflows. It is an organizational aid, not live booking advice or a real customer itinerary.',
-    sampleTitle: 'Before confirming a change',
-    lines: ['Check the requested dates and route', 'Review available options in the approved system', 'Explain fare or policy limits accurately', 'Summarize the agreed itinerary and next step'],
-    Icon: AirplaneTilt,
-  },
-  {
-    number: '04',
-    category: 'CONTENT SUPPORT · PRACTICE SAMPLE',
-    title: 'A small weekly content plan',
-    description: 'A lightweight planning format for keeping simple social content organized. Final graphics and video examples can be added as they are prepared.',
-    sampleTitle: 'Sample content sequence',
-    lines: ['Monday · Helpful tip', 'Wednesday · Product or service feature', 'Friday · Short behind-the-scenes reel', 'Weekend · Community question'],
-    Icon: CalendarBlank,
+    category: 'PROMOTIONAL & PUBLICATION MATERIALS',
+    title: 'Posters and publication layouts',
+    summary: 'Promotional posters and other publication materials made to communicate information clearly and consistently.',
+    note: 'YOUR POSTERS GO HERE',
+    kind: 'posters',
   },
 ]
 
 export default function ProjectsGrid() {
+  const workRef = useRef<HTMLElement>(null)
+  useWorkSpotlight(workRef)
+
   return (
-    <section className="va-page" aria-labelledby="samples-title">
-      <header className="va-page__head">
-        <span className="va-eyebrow">Work samples</span>
-        <h1 id="samples-title">A look at how I approach the work.</h1>
-        <p>These are self-created practice examples, not paid client projects. They show how I think through organization, communication, and follow-through. I will add finished Canva and video samples as they are ready.</p>
+    <section className="va-page work-page" aria-labelledby="samples-title" ref={workRef}>
+      <header className="va-page__head work-page__head">
+        <span className="va-eyebrow">Selected work · In progress</span>
+        <h1 id="samples-title">Creative work, thoughtful details.</h1>
+        <p>Browse my video-editing, brochure, and publication-design categories. I’ll replace the clearly marked sample spaces with finished files as I add each piece to this portfolio.</p>
       </header>
-      <div className="va-samples">
-        {SAMPLES.map(({ Icon, ...sample }) => (
-          <article className="va-sample" key={sample.number}>
-            <div className="va-sample__top">
-              <span className="va-sample__icon"><Icon size={23} weight="regular" aria-hidden="true" /></span>
-              <span className="va-sample__number">{sample.number}</span>
+
+      <WorkTicker />
+
+      <div className="work-gallery">
+        {WORK.map((sample) => (
+          <article className={`work-card work-card--${sample.kind}`} key={sample.number}>
+            <div className={`work-card__art work-card__art--${sample.kind}`} aria-label={sample.note}>
+              {sample.kind === 'video' && (
+                <div className="work-placeholder work-placeholder--video">
+                  <span className="work-placeholder__eyebrow">VIDEO PREVIEW</span>
+                  <span className="work-placeholder__play" aria-hidden="true">▶</span>
+                  <span className="work-placeholder__caption">{sample.note}</span>
+                  <span className="work-placeholder__timeline" aria-hidden="true"><i /><i /><i /><i /><i /></span>
+                </div>
+              )}
+              {sample.kind === 'brochure' && (
+                <div className="work-brochure-stack" aria-hidden="true">
+                  <div className="work-brochure work-brochure--back"><span>PAGE 03</span><i /></div>
+                  <div className="work-brochure work-brochure--mid"><span>PAGE 02</span><i /></div>
+                  <div className="work-brochure work-brochure--front"><span>BROCHURE</span><b>YOUR PAGES<br />GO HERE</b><i /></div>
+                </div>
+              )}
+              {sample.kind === 'posters' && (
+                <div className="work-poster-set" aria-hidden="true">
+                  <div className="work-poster work-poster--one"><small>PUBLICATION</small><b>YOUR<br />POSTER</b><i /></div>
+                  <div className="work-poster work-poster--two"><small>PROMO</small><b>YOUR<br />DESIGN</b><i /></div>
+                  <div className="work-poster work-poster--three"><small>LAYOUT</small><b>YOUR<br />WORK</b><i /></div>
+                </div>
+              )}
             </div>
-            <span className="va-sample__category">{sample.category}</span>
-            <h2>{sample.title}</h2>
-            <p>{sample.description}</p>
-            <div className="va-sample__preview">
-              <h3>{sample.sampleTitle}</h3>
-              <ul>
-                {sample.lines.map((line) => (
-                  <li key={line}><CheckCircle size={15} aria-hidden="true" /><span>{line}</span></li>
-                ))}
-              </ul>
+            <div className="work-card__copy">
+              <div className="work-card__top"><span className="work-card__number">{sample.number}</span><span className="work-card__category">{sample.category}</span></div>
+              <h2>{sample.title}</h2>
+              <p>{sample.summary}</p>
+              <span className="work-card__status"><i aria-hidden="true" /> Sample space · awaiting upload</span>
             </div>
           </article>
         ))}
+
+        <article className="work-card work-card--website">
+          <div className="work-card__art work-card__art--website" aria-hidden="true">
+            <div className="work-browser">
+              <div className="work-browser__bar"><i /><i /><i /><span>mirelle-portfolio</span></div>
+              <div className="work-browser__body">
+                <span className="work-browser__eyebrow">PERSONAL PORTFOLIO</span>
+                <strong>Thoughtful support.<br /><em>Creative assistance.</em></strong>
+                <span className="work-browser__line" /><span className="work-browser__line work-browser__line--short" />
+                <div className="work-browser__button">Explore my work ↗</div>
+              </div>
+            </div>
+          </div>
+          <div className="work-card__copy">
+            <div className="work-card__top"><span className="work-card__number">04</span><span className="work-card__category">WEB DESIGN · LEARNING PROJECT</span></div>
+            <h2>This portfolio website</h2>
+            <p>An ongoing personal project, customized from a starter template while I learn more about web layouts, React, CSS, and GitHub.</p>
+            <Link to="/" className="va-text-link">View homepage <ArrowUpRight size={16} aria-hidden="true" /></Link>
+          </div>
+        </article>
       </div>
-      <div className="va-endnote">
-        <p>Want a sample tailored to a specific task? We can discuss the brief and agree on what would be useful to demonstrate.</p>
-        <Link to="/contact" className="va-button">Get in touch <ArrowUpRight size={17} aria-hidden="true" /></Link>
+
+      <div className="va-endnote work-endnote">
+        <p>These spaces are placeholders—not finished client deliverables. Each will be replaced with my real sample output and any relevant project context.</p>
+        <Link to="/contact" className="va-button">Discuss a task <ArrowUpRight size={17} aria-hidden="true" /></Link>
       </div>
     </section>
   )
