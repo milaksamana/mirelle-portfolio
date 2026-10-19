@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight, FolderOpen, Stack, User, Compass } from '@/components/slab'
 import { profile } from '@/data/profile'
-import QuickMenu from './QuickMenu'
 
 export function HomeProfile() {
   return (
@@ -11,7 +10,6 @@ export function HomeProfile() {
         <span className="hprofile__name">{profile.name}</span>
         <span className="hprofile__handle">{profile.handle} · {profile.role}</span>
       </div>
-      <QuickMenu className="hprofile__menu" />
     </header>
   )
 }
