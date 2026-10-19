@@ -24,6 +24,10 @@ export default function DynamicIslandNav() {
   const [pinned, setPinned] = useState(false)
   const isOpen = hovered || focused || pinned
 
+  const enterWithPointer = (event: React.PointerEvent<HTMLElement>) => {
+    if (event.pointerType !== 'touch') setHovered(true)
+  }
+
   const close = useCallback(() => {
     setPinned(false)
     setHovered(false)
@@ -49,7 +53,6 @@ export default function DynamicIslandNav() {
       className={`dynamic-island${isOpen ? ' is-expanded' : ''}`}
       ref={rootRef}
       aria-label="Main navigation"
-      onPointerEnter={(event) => { if (event.pointerType !== 'touch') setHovered(true) }}
       onPointerLeave={() => { setHovered(false); setPinned(false) }}
       onFocusCapture={() => setFocused(true)}
       onBlurCapture={onBlurCapture}
@@ -59,8 +62,10 @@ export default function DynamicIslandNav() {
           type="button"
           ref={collapsedButtonRef}
           className="dynamic-island__collapsed"
+          onPointerEnter={enterWithPointer}
           onClick={() => setPinned((value) => !value)}
           aria-expanded={isOpen}
+          aria-controls="dynamic-island-expanded"
           aria-label={isOpen ? 'Navigation expanded' : 'Expand navigation'}
           tabIndex={isOpen ? -1 : 0}
         >
@@ -68,7 +73,7 @@ export default function DynamicIslandNav() {
           <span className="dynamic-island__status" aria-hidden="true" />
         </button>
 
-        <div className="dynamic-island__expanded" aria-hidden={!isOpen} inert={!isOpen || undefined}>
+        <div className="dynamic-island__expanded" id="dynamic-island-expanded" aria-hidden={!isOpen} inert={!isOpen || undefined} onPointerEnter={enterWithPointer}>
           <img className="dynamic-island__avatar" src={profile.avatarSrc} alt="" width={30} height={30} />
           <div className="dynamic-island__links">
             {LINKS.map(({ label, to }) => (
