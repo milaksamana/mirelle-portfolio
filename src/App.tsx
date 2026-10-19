@@ -6,7 +6,6 @@ import AccessMenu from '@/components/AccessMenu'
 import TopNav from '@/components/TopNav'
 import { motionReduced } from '@/lib/a11y'
 import { useLenis, SCROLLER_ID } from '@/hooks/useLenis'
-import { useIsPhone } from '@/hooks/useMediaQuery'
 import { getPerfTier, watchFrameHealth, PERF_TIER_EVENT } from '@/lib/perf'
 
 // Lazy-load HeroCanvas so the 118KB Three.js bundle is fetched only
@@ -17,13 +16,11 @@ import { getPerfTier, watchFrameHealth, PERF_TIER_EVENT } from '@/lib/perf'
 const HeroCanvas = lazy(() => import('@/components/HeroCanvasV2'))
 
 /**
- * The shell. It owns everything that outlives a route change: the contour
- * shader, the intro, the profile rail and the one scrolling panel. Each route
- * renders its view into that panel through the Outlet.
+ * The app shell owns the top navigation, animated background, intro, and one
+ * scrolling content panel. Each route renders its view into that panel.
  *
- * Home is the route that shaped the layout: it is sized to the panel box and
- * must not scroll, which is what `data-fixed` switches off. Projects,
- * Testimonials, About and Contact are built to the same budget and join it.
+ * All content views scroll in the main panel on desktop; the app shell becomes
+ * a normal document flow on narrower viewports.
  */
 export default function App() {
   useLenis()
@@ -31,11 +28,6 @@ export default function App() {
   const { pathname } = useLocation()
   const FIXED_ROUTES = ['/', '/projects', '/testimonials', '/about', '/contact']
   const isFixed = FIXED_ROUTES.includes(pathname)
-  // Below the shell breakpoint the rail is gone: a bottom tab bar navigates,
-  // the QuickMenu (theme + accessibility) floats top-right on every page but
-  // Home (whose profile header carries it), and the visits widget folds into
-  // that header.
-  const phone = useIsPhone()
   const panelRef = useRef<HTMLElement>(null)
 
   // The panel is the scroller, so a route change has to reset it by hand -
