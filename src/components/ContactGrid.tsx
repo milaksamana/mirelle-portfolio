@@ -31,7 +31,7 @@ export default function ContactGrid() {
         <p>I’ll confirm availability, scope, timeline, and pricing before agreeing to any work.</p>
       </div>
       <div className="va-endnote">
-        <p>Until the contact channel is ready, feel free to review my background and practice samples.</p>
+        <p>You can also explore my background and creative samples before reaching out.</p>
         <div className="va-inline-links">
           <Link to="/about" className="va-text-link">About me <ArrowUpRight size={16} aria-hidden="true" /></Link>
           <Link to="/projects" className="va-text-link">Work samples <ArrowUpRight size={16} aria-hidden="true" /></Link>
