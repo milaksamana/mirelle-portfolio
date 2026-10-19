@@ -127,7 +127,7 @@
     radial-gradient(circle, rgba(231, 183, 45, .65) 1.6px, transparent 2.1px),
     radial-gradient(ellipse 190px 160px at var(--x, 50%) var(--y, 42%), rgba(231, 183, 45, .13), transparent 72%);
   background-size: 16px 16px, auto;
-  -webkit-mask-image: radial-gradient(circle 100px at var(--x, 50%) var(--y, 42%), #000, transparent);
+  -webkit-mask-image: radial-gradient(circle 80px at var(--x, 50%) var(--y, 42%), #000, transparent);
   mask-image: radial-gradient(circle 100px at var(--x, 50%) var(--y, 42%), #000, transparent);
   opacity: .88;
 }
@@ -291,7 +291,7 @@
 .pull-quote__word { display: inline; opacity: 0; transform: translateY(10px); transition: opacity 600ms cubic-bezier(.32,.72,0,1), transform 600ms cubic-bezier(.32,.72,0,1); transition-delay: calc(550ms + var(--i) * 85ms); }
 .pull-quote[data-revealed='true'] .pull-quote__mark { animation: quote-mark-arrive 600ms cubic-bezier(.32,.72,0,1) both; }
 .pull-quote[data-revealed='true'] .pull-quote__word { opacity: 1; transform: none; }
-.pull-quote__attribution { margin-top: 24px; color: var(--muted); opacity: 0; font: 600 10px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .13em; transition: opacity 600ms ease; transition-delay: 1.25s; }
+.pull-quote__attribution { margin-top: 24px; color: var(--muted); opacity: 0; font: 600 10px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .13em; transition: opacity 600ms ease; transition-delay: 2.95s; }
 .pull-quote__attribution span { color: var(--orange-ink); }
 .pull-quote[data-revealed='true'] .pull-quote__attribution { opacity: 1; }
 @keyframes quote-mark-arrive { 0% { opacity: 0; transform: scale(0); } 75% { opacity: 1; transform: scale(1.12); } 100% { opacity: 1; transform: scale(1); } }
@@ -338,17 +338,17 @@
   border: 1px solid rgba(255,255,255,.38);
   background: linear-gradient(180deg, var(--orange-hover), var(--orange)) !important;
   color: #35270d !important;
-  box-shadow: 0 8px 0 var(--orange-ink), inset 0 1px 0 rgba(255,255,255,.55);
+  box-shadow: 0 8px 0 var(--button-edge, var(--orange-ink)), inset 0 1px 0 rgba(255,255,255,.55);
   transform: translateY(0);
   transition: transform 590ms cubic-bezier(.32,.72,0,1), box-shadow 90ms ease-out, background 180ms ease;
 }
 .va-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 0 var(--orange-ink), inset 0 1px 0 rgba(255,255,255,.55);
+  box-shadow: 0 10px 0 var(--button-edge, var(--orange-ink)), inset 0 1px 0 rgba(255,255,255,.55);
 }
 .va-button:active {
   transform: translateY(8px);
-  box-shadow: 0 0 0 var(--orange-ink), inset 0 1px 0 rgba(255,255,255,.55);
+  box-shadow: 0 0 0 var(--button-edge, var(--orange-ink)), inset 0 1px 0 rgba(255,255,255,.55);
   transition: transform 90ms ease-out, box-shadow 90ms ease-out;
 }
 .va-button::after {
