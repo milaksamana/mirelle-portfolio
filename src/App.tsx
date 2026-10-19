@@ -3,7 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import IntroOverlay from '@/components/IntroOverlay'
 import CursorRing from '@/components/CursorRing'
 import AccessMenu from '@/components/AccessMenu'
-import TopNav from '@/components/TopNav'
+import DynamicIslandNav from '@/components/DynamicIslandNav'
 import { motionReduced } from '@/lib/a11y'
 import { useLenis, SCROLLER_ID } from '@/hooks/useLenis'
 import { getPerfTier, watchFrameHealth, PERF_TIER_EVENT } from '@/lib/perf'
@@ -26,8 +26,9 @@ export default function App() {
   useLenis()
 
   const { pathname } = useLocation()
-  const FIXED_ROUTES = ['/', '/projects', '/testimonials', '/about', '/contact']
-  const isFixed = FIXED_ROUTES.includes(pathname)
+  // Every route now scrolls inside the same panel so the story and horizontal
+  // Services section can respond to scroll progress on desktop.
+  const isFixed = false
   const panelRef = useRef<HTMLElement>(null)
 
   // The panel is the scroller, so a route change has to reset it by hand -
@@ -92,7 +93,7 @@ export default function App() {
           <HeroCanvas />
         </Suspense>
       )}
-      <TopNav />
+      <DynamicIslandNav />
       <div className="shell">
         <main
           ref={panelRef}
