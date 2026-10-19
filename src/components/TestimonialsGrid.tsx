@@ -25,13 +25,13 @@ const COLUMNS = [
 function PrincipleCard({ quote }: { quote: string }) {
   return (
     <figure className="principle-card">
-      <div className="principle-card__author">
+      <figcaption className="principle-card__author">
         <span className="principle-card__avatar" aria-hidden="true">ML</span>
-        <figcaption>
+        <span className="principle-card__author-copy">
           <strong>Mirelle Laksamana</strong>
           <span>Working principle</span>
-        </figcaption>
-      </div>
+        </span>
+      </figcaption>
       <blockquote><p>{quote}</p></blockquote>
     </figure>
   )
