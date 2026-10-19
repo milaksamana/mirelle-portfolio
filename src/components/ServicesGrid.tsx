@@ -126,7 +126,7 @@ export default function ServicesGrid() {
   }, [])
 
   return (
-    <>
+    <div className="services-page-wrap">
       <section className="services-horizontal va-page" aria-labelledby="services-title" ref={sectionRef} data-static="false">
         <div className="services-stage" ref={stageRef}>
           <header className="va-page__head services-stage__head">
@@ -165,6 +165,6 @@ export default function ServicesGrid() {
         <p>Every project starts with a conversation about your needs, preferred process, timeline, and scope. I’ll be transparent when a task falls outside my current experience.</p>
         <Link to="/contact" className="va-button">Discuss a task <ArrowUpRight size={17} aria-hidden="true" /></Link>
       </div>
-    </>
+    </div>
   )
 }
