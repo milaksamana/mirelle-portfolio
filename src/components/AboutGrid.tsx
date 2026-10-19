@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from '@/components/slab'
 import { getScroller } from '@/hooks/useLenis'
@@ -88,7 +88,7 @@ export default function AboutGrid() {
         </div>
         <ol className="va-timeline" ref={timelineRef}>
           {EXPERIENCE.map((item, index) => (
-            <li key={item.role} className="va-timeline__item" style={{ ['--timeline-index' as string]: index }}>
+            <li key={item.role} className="va-timeline__item" style={{ '--timeline-index': index } as CSSProperties}>
               <span className="va-timeline__dot" aria-hidden="true" />
               <article className="va-timeline__card" tabIndex={0}>
                 <time className="va-timeline__date" dateTime={item.dateTime}>{item.date}</time>
