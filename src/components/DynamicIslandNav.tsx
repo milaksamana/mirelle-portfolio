@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type FocusEvent } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { X } from '@/components/slab'
 import { profile } from '@/data/profile'
@@ -37,7 +37,7 @@ export default function DynamicIslandNav() {
     setPinned(false)
   }, [pathname])
 
-  const onBlurCapture = (event: React.FocusEvent<HTMLElement>) => {
+  const onBlurCapture = (event: FocusEvent<HTMLElement>) => {
     if (!rootRef.current?.contains(event.relatedTarget as Node | null)) {
       setFocused(false)
       setPinned(false)
