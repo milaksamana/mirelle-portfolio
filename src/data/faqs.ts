@@ -19,6 +19,6 @@ export const FAQS: QA[] = [
   },
   {
     q: 'How do we get started?',
-    a: 'We can begin by discussing the task, desired outcome, tools, scope, timeline, and expectations. Contact details will appear here once the public contact channel is ready.',
+    a: 'Email me at mirellelaksamana@gmail.com with the task, desired outcome, tools, scope, timeline, and expectations. I’ll reply to discuss fit and next steps.',
   },
 ]
