@@ -50,8 +50,9 @@ export default function ServicesGrid() {
     const section = sectionRef.current
     const stage = stageRef.current
     const track = trackRef.current
+    const viewport = stage?.querySelector<HTMLElement>('.services-track-window')
     const scroller = getScroller()
-    if (!section || !stage || !track || !scroller) return
+    if (!section || !stage || !track || !viewport || !scroller) return
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
     let travel = 0
@@ -65,7 +66,7 @@ export default function ServicesGrid() {
       }
 
       section.dataset.static = 'false'
-      travel = Math.max(0, track.scrollWidth - stage.clientWidth)
+      travel = Math.max(0, track.scrollWidth - viewport.clientWidth)
       section.style.height = `${stage.clientHeight + travel}px`
       schedule()
     }
@@ -82,7 +83,7 @@ export default function ServicesGrid() {
 
       let closest: HTMLElement | null = null
       let closestDistance = Number.POSITIVE_INFINITY
-      const center = stage.getBoundingClientRect().left + stage.clientWidth / 2
+      const center = viewport.getBoundingClientRect().left + viewport.clientWidth / 2
       track.querySelectorAll<HTMLElement>('.service-panel').forEach((card) => {
         const rect = card.getBoundingClientRect()
         const distanceFromCenter = Math.abs(rect.left + rect.width / 2 - center)
