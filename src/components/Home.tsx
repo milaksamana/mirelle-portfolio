@@ -72,7 +72,7 @@ export default function Home() {
         </div>
       </div>
 
-      {!phone && <HomeStory />}
+      <HomeStory />
       <PullQuote />
 
       {phone ? (
