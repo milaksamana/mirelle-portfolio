@@ -34,8 +34,8 @@ export const profile: Profile = {
   avatarSrc: '/avatar.svg',
   // No verification badge is shown; no formal VA credential is being claimed.
   verifiedLabel: '',
-  // Add a public-facing contact address here before launching the contact form.
-  email: '',
+  // Public contact address supplied by Mirelle.
+  email: 'mirellelaksamana@gmail.com',
   location: 'San Pedro, Laguna, Philippines',
   stats: [
     { value: '1+ yrs', label: 'customer support', Icon: Briefcase },
