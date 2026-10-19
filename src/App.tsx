@@ -1,11 +1,9 @@
 import { lazy, Suspense, useState, useEffect, useLayoutEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import TabBar from '@/components/TabBar'
-import QuickMenu from '@/components/QuickMenu'
-import Rail from '@/components/Rail'
 import IntroOverlay from '@/components/IntroOverlay'
 import CursorRing from '@/components/CursorRing'
 import AccessMenu from '@/components/AccessMenu'
+import TopNav from '@/components/TopNav'
 import { motionReduced } from '@/lib/a11y'
 import { useLenis, SCROLLER_ID } from '@/hooks/useLenis'
 import { useIsPhone } from '@/hooks/useMediaQuery'
@@ -102,9 +100,8 @@ export default function App() {
           <HeroCanvas />
         </Suspense>
       )}
-      {phone && pathname !== '/' && <QuickMenu className="qmenu--float" />}
+      <TopNav />
       <div className="shell">
-        <Rail />
         <main
           ref={panelRef}
           id={SCROLLER_ID}
@@ -116,7 +113,6 @@ export default function App() {
           </Suspense>
         </main>
       </div>
-      {phone && <TabBar />}
       <AccessMenu />
     </>
   )
