@@ -38,7 +38,7 @@ export default function HomeStory() {
       if (!visible) return
       const index = steps.indexOf(visible.target as HTMLElement)
       if (index >= 0) wrap.dataset.step = String(index + 1)
-    }, { root, rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.1, 0.5] })
+    }, { root, rootMargin: '-45% 0px -45% 0px', threshold: 0 })
 
     steps.forEach((step) => observer.observe(step))
     return () => observer.disconnect()
