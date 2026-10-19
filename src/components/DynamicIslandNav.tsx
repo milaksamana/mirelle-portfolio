@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type FocusEvent } from 'react'
+import { useCallback, useEffect, useRef, useState, type FocusEvent, type PointerEvent } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { X } from '@/components/slab'
 import { profile } from '@/data/profile'
@@ -24,7 +24,7 @@ export default function DynamicIslandNav() {
   const [pinned, setPinned] = useState(false)
   const isOpen = hovered || focused || pinned
 
-  const enterWithPointer = (event: React.PointerEvent<HTMLElement>) => {
+  const enterWithPointer = (event: PointerEvent<HTMLElement>) => {
     if (event.pointerType !== 'touch') setHovered(true)
   }
 
