@@ -367,7 +367,11 @@
 @media (prefers-reduced-motion: reduce) {
   .work-page__head h1 { animation: none; }
   .work-card, .va-button, .va-button::after { transition: none; }
-  .work-card:hover, .va-button:hover, .va-button:active { transform: none; }
+  .work-card:hover, .va-button:hover { transform: none; }
+  .va-button:active {
+    transform: translateY(8px);
+    box-shadow: 0 0 0 var(--orange-ink), inset 0 1px 0 rgba(255,255,255,.55);
+  }
 }
 
 /* ---------------- Sliding pill for the desktop rail navigation ---------------- */
