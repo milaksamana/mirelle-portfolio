@@ -47,6 +47,7 @@ import './styles/apple.css'
 import './styles/mobile-pass.css'
 import './styles/yellow-editorial.css'
 import './styles/ambient-motion.css'
+import './styles/interaction-pass.css'
 // Last: the perf tiers only ever turn things OFF, so they must win.
 import './styles/perf.css'
 
