@@ -211,6 +211,7 @@
   .work-ticker__row { overflow: visible; -webkit-mask-image: none; mask-image: none; }
   .work-ticker__track { width: 100%; flex-wrap: wrap; gap: 2px 12px; animation: none; }
   .work-ticker__group:not(:first-child) { display: none; }
+  .work-ticker__group:first-child { width: 100%; flex-wrap: wrap; }
   .work-ticker__row--outline { display: none; }
   .work-ticker__item { font-size: clamp(16px, 3vw, 20px); white-space: normal; padding: 3px 0; }
 }
