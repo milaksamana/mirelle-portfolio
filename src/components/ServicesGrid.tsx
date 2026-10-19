@@ -78,7 +78,7 @@ export default function ServicesGrid() {
       const sectionTop = section.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop
       const maxScroll = Math.max(0, section.offsetHeight - stage.clientHeight)
       const progress = maxScroll > 0 ? clamp(scroller.scrollTop - sectionTop, 0, maxScroll) / maxScroll : 0
-      const distance = Math.max(0, track.scrollWidth - stage.clientWidth)
+      const distance = Math.max(0, track.scrollWidth - viewport.clientWidth)
       track.style.transform = `translate3d(${-progress * distance}px, 0, 0)`
 
       let closest: HTMLElement | null = null
