@@ -33,7 +33,7 @@ export default function PullQuote() {
       <blockquote className="pull-quote__text" aria-label={QUOTE}>
         {words.map((word, index) => (
           <span className="pull-quote__word" key={`${word}-${index}`} style={{ '--delay': `${index * 85}ms` } as CSSProperties} aria-hidden="true">
-            {word}{index < words.length - 1 ? ' ' : ''}
+            {word}
           </span>
         ))}
       </blockquote>
