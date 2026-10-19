@@ -738,6 +738,7 @@
 }
 .dynamic-island__links::-webkit-scrollbar { display: none; }
 .dynamic-island__link {
+  --island-ink: #FFF8E8;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -745,14 +746,14 @@
   padding: 0 clamp(7px, .9vw, 13px);
   border: 1px solid transparent;
   border-radius: 12px;
-  color: color-mix(in srgb, var(--cream) 76%, transparent);
+  color: color-mix(in srgb, #FFF8E8 76%, transparent);
   font-size: clamp(10px, .86vw, 12px);
   font-weight: 600;
   white-space: nowrap;
   text-decoration: none;
   transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
 }
-.dynamic-island__link:hover { color: var(--cream); background: rgba(255,255,255,.07); }
+.dynamic-island__link:hover { color: #FFF8E8; background: rgba(255,255,255,.07); }
 .dynamic-island__link[aria-current='page'] {
   color: #3b2c0c;
   background: var(--orange);
@@ -767,7 +768,7 @@
 .dynamic-island__quickmenu { flex: 0 0 34px; width: 34px; height: 34px; position: relative; z-index: 4; }
 .dynamic-island__quickmenu .qmenu__button {
   display: grid; place-items: center; width: 34px; height: 34px; padding: 0;
-  border: 1px solid rgba(255,255,255,.16); border-radius: 50%; color: var(--cream);
+  border: 1px solid rgba(255,255,255,.16); border-radius: 50%; color: #FFF8E8;
   background: rgba(255,255,255,.08); transition: background 180ms ease, transform 120ms ease;
 }
 .dynamic-island__quickmenu .qmenu__button:hover { background: rgba(255,255,255,.15); }
