@@ -583,3 +583,29 @@
 @media (prefers-reduced-motion: reduce) {
   .topnav__link:hover { transform: none; }
 }
+
+
+/* The redesigned header is the only primary navigation surface; keep it
+   above the scroll container at every width. */
+.topnav__quickmenu .qmenu__panel {
+  transform: translateY(-5px) scale(.97);
+  transform-origin: top right;
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 180ms ease, opacity 180ms ease, visibility 0s linear 180ms;
+}
+.topnav__quickmenu .qmenu__panel.is-open {
+  transform: none;
+  opacity: 1;
+  visibility: visible;
+  transition: transform 200ms ease, opacity 200ms ease, visibility 0s;
+}
+.topnav__quickmenu .qmenu__row svg { flex: 0 0 auto; color: var(--orange-ink); }
+.topnav__quickmenu .qmenu__switch { margin-left: auto; }
+
+/* No bottom bar now: remove the old reserve space it required at the foot of pages. */
+@media (max-width: 1099px) {
+  .home { padding-bottom: 38px !important; }
+  .va-page { padding-bottom: 40px !important; }
+  .mobile-explore { padding-bottom: 0; }
+}
