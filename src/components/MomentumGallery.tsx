@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 
-type Item = { src: string; alt: string; title: string; caption: string }
+type Item = { src: string; alt: string; title: string; caption: string; pdf?: string; pdfLabel?: string }
 
 const ITEMS: Item[] = [
   { src: '/samples/creative/sweet-serenade-logo.jpeg', alt: 'Sweet Serenade circular mango tapioca drink logo with a yellow scalloped border', title: 'Sweet Serenade', caption: 'Brand identity · Logo design' },
   { src: '/samples/creative/mango-tapioca-promo.png', alt: 'Mango tapioca promotional graphic with a yellow drink, mango splash, fruit cubes, and green leaves', title: 'Mango Tapioca', caption: 'Small-business promotional graphic' },
-  { src: '/samples/creative/baker-bee-mini-donut-menu.png', alt: 'Baker Bee mini-donut menu showing flavors, toppings, and package prices', title: 'Baker Bee', caption: 'Mini-donut branding · Menu design' },
+  { src: '/samples/creative/baker-bee-mini-donut-menu.png', alt: 'Baker Bee mini-donut menu showing flavors, toppings, and package prices', title: 'Baker Bee · Menu', caption: 'Small-business menu design', pdf: '/samples/creative/baker-bee-mini-donut-menu.pdf', pdfLabel: 'Open menu PDF' },
+  { src: '/samples/creative/baker-bee-mini-donut-menu.png', alt: 'Baker Bee mini-donut branding PDF with bakery logo artwork', title: 'Baker Bee · Branding', caption: 'Mini-donut brand artwork', pdf: '/samples/creative/baker-bee-mini-donut-branding.pdf', pdfLabel: 'Open branding PDF' },
 ]
 
 export default function MomentumGallery() {
@@ -97,7 +98,7 @@ export default function MomentumGallery() {
               <button type="button" className="momentum-gallery__image-button" onClick={() => setActiveImage(item)} aria-label={`Enlarge ${item.title} design`}>
                 <img src={item.src} alt={item.alt} draggable={false} />
               </button>
-              <div className="momentum-gallery__caption"><strong>{item.title}</strong><span>{item.caption}</span></div>
+              <div className="momentum-gallery__caption"><strong>{item.title}</strong><span>{item.caption}</span>{item.pdf && <a href={item.pdf} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>{item.pdfLabel} ↗</a>}</div>
             </article>
           ))}
         </div>
