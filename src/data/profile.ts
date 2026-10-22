@@ -30,7 +30,7 @@ export const profile: Profile = {
   firstName: 'Mirelle',
   handle: 'Customer Support Professional',
   role: 'Administrative & Creative Support',
-  avatarSrc: '/avatar.svg',
+  avatarSrc: '/mirelle-profile.png',
   // No verification badge is shown; no formal VA credential is being claimed.
   verifiedLabel: '',
   // Public contact address supplied by Mirelle.
@@ -44,8 +44,8 @@ export const profile: Profile = {
   displayName: { line1: 'Thoughtful support.', line2: 'Creative assistance.' },
   hero: {
     body: 'I bring customer support experience, organized admin skills, and creative content support to help busy teams keep things moving.',
-    portraitSrc: '/avatar.svg',
-    portraitAlt: 'Profile image placeholder for Mirelle Laksamana',
+    portraitSrc: '/mirelle-profile.png',
+    portraitAlt: 'Portrait of Mirelle Laksamana',
   },
   socials: [],
 }
