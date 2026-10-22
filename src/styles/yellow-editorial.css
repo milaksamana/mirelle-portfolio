@@ -294,3 +294,25 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--orange-ink); ou
 .mobile-explore .htile__desc { color: var(--muted); font-size: 12px; line-height: 1.55; }
 .mobile-explore .htile__arrow { justify-self: end; }
 .mobile-explore .hsec { padding: 0 !important; margin: 0 !important; }
+
+
+/* Real brochure PDF samples: accessible, compact links within the work card. */
+.work-brochure-links {
+  display: flex; flex-direction: column; justify-content: center; gap: 0;
+  width: 100%; height: 100%; padding: clamp(16px, 2.4vw, 30px);
+  background: var(--paper);
+}
+.work-brochure-link {
+  display: grid; grid-template-columns: 34px minmax(0, 1fr) 22px;
+  align-items: center; gap: 13px; padding: 17px 0;
+  border-bottom: 1px solid var(--line); text-decoration: none;
+  transition: padding 180ms ease, background 180ms ease;
+}
+.work-brochure-link:first-child { border-top: 1px solid var(--line); }
+.work-brochure-link:hover { padding-left: 9px; padding-right: 9px; background: var(--tint); }
+.work-brochure-link__number { color: var(--orange-ink); font-size: 11px; font-weight: 800; }
+.work-brochure-link__copy { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.work-brochure-link__copy strong { color: var(--navy); font-size: clamp(15px, 1.6vw, 19px); line-height: 1.3; }
+.work-brochure-link__copy small { color: var(--muted); font-size: 11px; line-height: 1.5; }
+.work-brochure-link__arrow { color: var(--orange-ink); font-size: 21px; justify-self: end; transition: transform 180ms ease; }
+.work-brochure-link:hover .work-brochure-link__arrow { transform: translate(2px, -2px); }
