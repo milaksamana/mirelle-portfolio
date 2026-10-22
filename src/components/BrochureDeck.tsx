@@ -3,8 +3,11 @@ import { useState } from 'react'
 type Card = { title: string; description: string; href: string; label: string }
 
 const INITIAL_CARDS: Card[] = [
-  { title: 'Mini Donut Menu', description: 'Baker Bee · Flavors, toppings, and package options', href: '/samples/brochures/baker-bee-mini-donut-menu.pdf', label: 'Menu design' },
-  { title: 'Mini Donut Branding', description: 'Baker Bee · Brand and promotional material', href: '/samples/brochures/baker-bee-mini-donut-branding.pdf', label: 'Branding PDF' },
+  { title: 'Debut Packages', description: 'Sanz Studio by HotShoe · Event photography package brochure', href: '/samples/brochures/debut-package-2023.pdf', label: 'Photography brochure' },
+  { title: 'Wedding Packages', description: 'Sanz Studio by HotShoe · Wedding photography and video packages', href: '/samples/brochures/wedding-packages-2023.pdf', label: 'Photography brochure' },
+  { title: 'Kiddie Packages', description: 'Sanz Studio by HotShoe · Children’s event photography packages', href: '/samples/brochures/kiddie-packages-2023.pdf', label: 'Photography brochure' },
+  { title: 'Baker Bee Mini Donut Menu', description: 'Flavor options, toppings, and mini-donut package pricing', href: '/samples/brochures/baker-bee-mini-donut-menu.pdf', label: 'Menu design' },
+  { title: 'Baker Bee Branding', description: 'Mini-donut brand artwork and supporting design pages', href: '/samples/brochures/baker-bee-mini-donut-branding.pdf', label: 'Branding PDF' },
 ]
 
 export default function BrochureDeck() {
@@ -50,7 +53,7 @@ export default function BrochureDeck() {
       <div className="work-section-heading">
         <span className="va-eyebrow">Brochure & menu documents</span>
         <h2 id="brochure-deck-title">Swipe through the pages.</h2>
-        <p>Drag or use your keyboard to cycle through the available PDF samples. Select a card to open the full document.</p>
+        <p>Browse the event-photography brochures and small-business menu documents. Drag or use your keyboard to cycle through the cards, then open a PDF to review the complete design.</p>
       </div>
       <div className="brochure-deck__layout">
         <div className="brochure-deck__stage" tabIndex={0} role="region" aria-label="Swipeable brochure card deck. Use left and right arrow keys to cycle through cards." onKeyDown={(e) => { if (e.key === 'ArrowLeft') { e.preventDefault(); swipe(-1) } if (e.key === 'ArrowRight') { e.preventDefault(); swipe(1) } }}>
@@ -79,7 +82,7 @@ export default function BrochureDeck() {
           ))}
         </div>
         <div className="brochure-deck__controls">
-          <p>Swipe to browse the deck, then open a PDF to view the complete design.</p>
+          <p>Five documents grouped into one browseable deck.</p>
           <div className="brochure-deck__buttons">
             <button type="button" onClick={() => swipe(-1)} disabled={leaving}>← Previous</button>
             <button type="button" onClick={() => swipe(1)} disabled={leaving}>Next →</button>
