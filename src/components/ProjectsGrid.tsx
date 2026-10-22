@@ -68,8 +68,8 @@ const WORK = [
     number: '02',
     category: 'BROCHURE DESIGN',
     title: 'Company brochure package',
-    summary: 'A coordinated set of brochure pages prepared for one company, presented as one project rather than separate pieces.',
-    note: 'YOUR BROCHURE PAGES GO HERE',
+    summary: 'Three event-photography package brochures created for Sanz Studio by HotShoe: debut, wedding, and kiddie packages.',
+    note: 'BROCHURE PDF SAMPLES',
     kind: 'brochure',
   },
   {
@@ -89,9 +89,9 @@ export default function ProjectsGrid() {
   return (
     <section className="va-page work-page" aria-labelledby="samples-title" ref={workRef}>
       <header className="va-page__head work-page__head">
-        <span className="va-eyebrow">Selected work · In progress</span>
+        <span className="va-eyebrow">Selected work · Creative samples</span>
         <h1 id="samples-title">Creative work, thoughtful details.</h1>
-        <p>Browse my video-editing, brochure, and publication-design categories. I’ll replace the clearly marked sample spaces with finished files as I add each piece to this portfolio.</p>
+        <p>Explore selected video edits, brochure designs, and publication materials. Brochure PDFs open in a new tab so you can review the original layouts.</p>
       </header>
 
       <WorkTicker />
@@ -109,10 +109,22 @@ export default function ProjectsGrid() {
                 </div>
               )}
               {sample.kind === 'brochure' && (
-                <div className="work-brochure-stack" aria-hidden="true">
-                  <div className="work-brochure work-brochure--back"><span>PAGE 03</span><i /></div>
-                  <div className="work-brochure work-brochure--mid"><span>PAGE 02</span><i /></div>
-                  <div className="work-brochure work-brochure--front"><span>BROCHURE</span><b>YOUR PAGES<br />GO HERE</b><i /></div>
+                <div className="work-brochure-links" aria-label="Brochure PDF samples">
+                  <a className="work-brochure-link" href="/samples/brochures/debut-package-2023.pdf" target="_blank" rel="noreferrer">
+                    <span className="work-brochure-link__number">01</span>
+                    <span className="work-brochure-link__copy"><strong>Debut packages</strong><small>Photography and event coverage</small></span>
+                    <span className="work-brochure-link__arrow" aria-hidden="true">↗</span>
+                  </a>
+                  <a className="work-brochure-link" href="/samples/brochures/wedding-packages-2023.pdf" target="_blank" rel="noreferrer">
+                    <span className="work-brochure-link__number">02</span>
+                    <span className="work-brochure-link__copy"><strong>Wedding packages</strong><small>Wedding photography and video</small></span>
+                    <span className="work-brochure-link__arrow" aria-hidden="true">↗</span>
+                  </a>
+                  <a className="work-brochure-link" href="/samples/brochures/kiddie-packages-2023.pdf" target="_blank" rel="noreferrer">
+                    <span className="work-brochure-link__number">03</span>
+                    <span className="work-brochure-link__copy"><strong>Kiddie packages</strong><small>Children’s event photography</small></span>
+                    <span className="work-brochure-link__arrow" aria-hidden="true">↗</span>
+                  </a>
                 </div>
               )}
               {sample.kind === 'posters' && (
@@ -127,7 +139,7 @@ export default function ProjectsGrid() {
               <div className="work-card__top"><span className="work-card__number">{sample.number}</span><span className="work-card__category">{sample.category}</span></div>
               <h2>{sample.title}</h2>
               <p>{sample.summary}</p>
-              <span className="work-card__status"><i aria-hidden="true" /> Sample space · awaiting upload</span>
+              {sample.kind === 'brochure' ? <span className="work-card__status"><i aria-hidden="true" /> Three PDF samples · ready to review</span> : <span className="work-card__status"><i aria-hidden="true" /> Sample space · awaiting upload</span>}
             </div>
           </article>
         ))}
@@ -154,7 +166,7 @@ export default function ProjectsGrid() {
       </div>
 
       <div className="va-endnote work-endnote">
-        <p>These spaces are placeholders—not finished client deliverables. Each will be replaced with my real sample output and any relevant project context.</p>
+        <p>The brochure links are intended for the original PDF samples. Video and poster sections remain placeholders until those files are added.</p>
         <Link to="/contact" className="va-button">Discuss a task <ArrowUpRight size={17} aria-hidden="true" /></Link>
       </div>
     </section>
