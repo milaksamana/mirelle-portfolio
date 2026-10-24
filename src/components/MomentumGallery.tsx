@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 
-type Item = { src: string; alt: string; title: string; caption: string; pdf?: string; pdfLabel?: string }
+type Item = { src?: string; alt: string; title: string; caption: string; pdf?: string; pdfLabel?: string }
+type ImageItem = Item & { src: string }
 
 const ITEMS: Item[] = [
   { src: '/samples/creative/sweet-serenade-logo.jpeg', alt: 'Sweet Serenade circular mango tapioca drink logo with a yellow scalloped border', title: 'Sweet Serenade', caption: 'Brand identity · Logo design' },
   { src: '/samples/creative/mango-tapioca-promo.png', alt: 'Mango tapioca promotional graphic with a yellow drink, mango splash, fruit cubes, and green leaves', title: 'Mango Tapioca', caption: 'Small-business promotional graphic' },
   { src: '/samples/creative/baker-bee-mini-donut-menu.png', alt: 'Baker Bee mini-donut menu showing flavors, toppings, and package prices', title: 'Baker Bee · Menu', caption: 'Small-business menu design', pdf: '/samples/creative/baker-bee-mini-donut-menu.pdf', pdfLabel: 'Open menu PDF' },
-  { src: '/samples/creative/baker-bee-mini-donut-menu.png', alt: 'Baker Bee mini-donut branding PDF with bakery logo artwork', title: 'Baker Bee · Branding', caption: 'Mini-donut brand artwork', pdf: '/samples/creative/baker-bee-mini-donut-branding.pdf', pdfLabel: 'Open branding PDF' },
+  { alt: 'Baker Bee mini-donut branding and logo artwork presented in a PDF document', title: 'Baker Bee · Branding', caption: 'Mini-donut brand artwork', pdf: '/samples/creative/baker-bee-mini-donut-branding.pdf', pdfLabel: 'Open branding PDF' },
 ]
 
 export default function MomentumGallery() {
@@ -14,7 +15,7 @@ export default function MomentumGallery() {
   const trackRef = useRef<HTMLDivElement>(null)
   const state = useRef({ x: 0, velocity: 0, dragging: false, pointerX: 0, lastTime: 0, frame: 0 })
   const [progress, setProgress] = useState(0)
-  const [activeImage, setActiveImage] = useState<Item | null>(null)
+  const [activeImage, setActiveImage] = useState<ImageItem | null>(null)
 
   useEffect(() => {
     const viewport = viewportRef.current
@@ -94,10 +95,18 @@ export default function MomentumGallery() {
       >
         <div className="momentum-gallery__track" ref={trackRef}>
           {ITEMS.map((item) => (
-            <article className="momentum-gallery__item" key={item.src}>
-              <button type="button" className="momentum-gallery__image-button" onClick={() => setActiveImage(item)} aria-label={`Enlarge ${item.title} design`}>
-                <img src={item.src} alt={item.alt} draggable={false} />
-              </button>
+            <article className="momentum-gallery__item" key={item.title}>
+              {item.src ? (
+                <button type="button" className="momentum-gallery__image-button" onClick={() => setActiveImage(item as ImageItem)} aria-label={`Enlarge ${item.title} design`}>
+                  <img src={item.src} alt={item.alt} draggable={false} />
+                </button>
+              ) : (
+                <a className="momentum-gallery__document-preview" href={item.pdf} target="_blank" rel="noreferrer" aria-label={`Open ${item.title} PDF`}>
+                  <strong>Baker Bee</strong>
+                  <span>Mini-donut branding</span>
+                  <small>{item.pdfLabel} ↗</small>
+                </a>
+              )}
               <div className="momentum-gallery__caption"><strong>{item.title}</strong><span>{item.caption}</span>{item.pdf && <a href={item.pdf} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>{item.pdfLabel} ↗</a>}</div>
             </article>
           ))}
