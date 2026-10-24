@@ -6,11 +6,11 @@ import QuickMenu from './QuickMenu'
 
 const LINKS = [
   { label: 'Home', to: '/' },
-  { label: 'Work', to: '/projects' },
+  { label: 'Work Samples', to: '/projects' },
   { label: 'Services', to: '/services' },
-  { label: 'About', to: '/about' },
-  { label: 'Journey', to: '/showcase' },
-  { label: 'Approach', to: '/testimonials' },
+  { label: 'About Me', to: '/about' },
+  { label: 'My Journey', to: '/showcase' },
+  { label: 'How I Work', to: '/testimonials' },
   { label: 'Contact', to: '/contact' },
 ] as const
 
