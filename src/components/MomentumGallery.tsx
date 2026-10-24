@@ -7,7 +7,7 @@ const ITEMS: Item[] = [
   { src: '/samples/creative/sweet-serenade-logo.jpeg', alt: 'Sweet Serenade circular mango tapioca drink logo with a yellow scalloped border', title: 'Sweet Serenade', caption: 'Brand identity · Logo design' },
   { src: '/samples/creative/mango-tapioca-promo.png', alt: 'Mango tapioca promotional graphic with a yellow drink, mango splash, fruit cubes, and green leaves', title: 'Mango Tapioca', caption: 'Small-business promotional graphic' },
   { src: '/samples/creative/baker-bee-mini-donut-menu.png', alt: 'Baker Bee mini-donut menu showing flavors, toppings, and package prices', title: 'Baker Bee · Menu', caption: 'Small-business menu design' },
-  { alt: 'Baker Bee mini-donut branding and logo artwork presented in a PDF document', title: 'Baker Bee · Branding', caption: 'Mini-donut brand artwork', pdf: '/samples/creative/baker-bee-mini-donut-branding.pdf', pdfLabel: 'Open branding PDF' },
+  { alt: 'Baker Bee mini-donut branding and logo artwork presented in a PDF document', title: 'Baker Bee · Branding', caption: 'Mini-donut brand artwork', pdf: '/samples/creative/baker-bee-mini-donut-branding.pdf' },
 ]
 
 function scrollGallery(viewport: HTMLDivElement | null, direction: -1 | 1) {
@@ -16,6 +16,10 @@ function scrollGallery(viewport: HTMLDivElement | null, direction: -1 | 1) {
     left: direction * Math.max(260, viewport.clientWidth * 0.82),
     behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
   })
+}
+
+function discourageSaving(event: React.SyntheticEvent) {
+  event.preventDefault()
 }
 
 export default function MomentumGallery() {
@@ -53,6 +57,7 @@ export default function MomentumGallery() {
         role="region"
         aria-label="Horizontally scrollable branding and promotional design samples"
         onScroll={updateProgress}
+        onContextMenu={discourageSaving}
         onKeyDown={(event) => {
           if (event.key === 'ArrowLeft') { event.preventDefault(); scrollGallery(viewportRef.current, -1) }
           if (event.key === 'ArrowRight') { event.preventDefault(); scrollGallery(viewportRef.current, 1) }
@@ -66,20 +71,28 @@ export default function MomentumGallery() {
                   type="button"
                   className="momentum-gallery__image-button"
                   onClick={() => setActiveImage(item as ImageItem)}
+                  onContextMenu={discourageSaving}
                   aria-label={'Enlarge ' + item.title + ' design'}
                 >
-                  <img src={item.src} alt={item.alt} draggable={false} loading="lazy" decoding="async" />
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    draggable={false}
+                    onDragStart={discourageSaving}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </button>
               )}
               {item.pdf && (
-                <div className="momentum-gallery__pdf-preview">
+                <div className="momentum-gallery__pdf-preview" onContextMenu={discourageSaving}>
                   <div className="momentum-gallery__pdf-heading">
-                    <span>PDF preview</span>
-                    <span aria-hidden="true">↘</span>
+                    <span>Document preview</span>
+                    <span aria-hidden="true">PDF</span>
                   </div>
                   <iframe
-                    src={item.pdf}
-                    title={item.title + ' PDF preview'}
+                    src={item.pdf + '#toolbar=0&navpanes=0&scrollbar=0'}
+                    title={item.title + ' inline PDF preview'}
                     loading="lazy"
                   />
                 </div>
@@ -87,11 +100,6 @@ export default function MomentumGallery() {
               <div className="momentum-gallery__caption">
                 <strong>{item.title}</strong>
                 <span>{item.caption}</span>
-                {item.pdf && (
-                  <a href={item.pdf} target="_blank" rel="noreferrer">
-                    Open full PDF ↗
-                  </a>
-                )}
               </div>
             </article>
           ))}
@@ -103,9 +111,16 @@ export default function MomentumGallery() {
       </div>
 
       {activeImage && (
-        <div className="work-lightbox" role="dialog" aria-modal="true" aria-label={activeImage.title} onClick={() => setActiveImage(null)}>
+        <div className="work-lightbox" role="dialog" aria-modal="true" aria-label={activeImage.title} onClick={() => setActiveImage(null)} onContextMenu={discourageSaving}>
           <button className="work-lightbox__close" type="button" onClick={() => setActiveImage(null)} aria-label="Close image preview">×</button>
-          <img src={activeImage.src} alt={activeImage.alt} onClick={(event) => event.stopPropagation()} />
+          <img
+            src={activeImage.src}
+            alt={activeImage.alt}
+            draggable={false}
+            onDragStart={discourageSaving}
+            onContextMenu={discourageSaving}
+            onClick={(event) => event.stopPropagation()}
+          />
           <p>{activeImage.title} · {activeImage.caption}</p>
         </div>
       )}
