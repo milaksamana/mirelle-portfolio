@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom'
 import { ArrowUpRight } from '@/components/slab'
 
 const LINKS = [
-  { number: '01', title: 'Work samples', description: 'Self-created examples of how I organize information and support everyday tasks.', to: '/projects', note: 'PRACTICE PROJECTS' },
-  { number: '02', title: 'Services', description: 'Customer support, administrative assistance, and creative content support.', to: '/services', note: 'HOW I CAN HELP' },
-  { number: '03', title: 'About me', description: 'My background across customer service, travel support, and digital marketing.', to: '/about', note: 'MY BACKGROUND' },
-  { number: '04', title: 'My journey', description: 'The experience and tools shaping my move into virtual assistance.', to: '/showcase', note: 'EXPERIENCE & LEARNING' },
-  { number: '05', title: 'My approach', description: 'Clear communication, careful follow-through, and a willingness to learn.', to: '/testimonials', note: 'WHAT TO EXPECT' },
+  { number: '01', title: 'Examples of my work', description: 'Explore selected business graphics, brochures, short-form video edits, and my website project.', to: '/projects', note: 'WORK SAMPLES' },
+  { number: '02', title: 'Practical support for everyday business needs', description: 'Customer support, admin organization, travel-related requests, and simple creative content.', to: '/services', note: 'HOW I CAN HELP' },
+  { number: '03', title: 'The experience behind my support', description: 'My background across customer support, travel operations, and creative work.', to: '/about', note: 'MY BACKGROUND' },
+  { number: '04', title: 'Experience, plus continued growth', description: 'How my previous roles and self-directed learning are shaping my VA services.', to: '/showcase', note: 'EXPERIENCE & GROWTH' },
+  { number: '05', title: 'Clear communication and careful follow-through', description: 'The principles I bring to each task and working relationship.', to: '/testimonials', note: 'WHAT TO EXPECT' },
 ] as const
 
 export default function HomeBento() {
