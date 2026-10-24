@@ -1,0 +1,227 @@
+/* Responsive media improvements: inline documents, native horizontal scrolling,
+   and visible controls for visitors using split-screen browser windows. */
+
+/* Native scrolling is more reliable than a translated track when the browser
+   is narrow, split-screen, zoomed, or operated with a trackpad/touchscreen. */
+.momentum-gallery__viewport {
+  overflow-x: auto !important;
+  overflow-y: hidden;
+  cursor: grab;
+  touch-action: pan-x pan-y;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: var(--orange-ink) var(--line);
+}
+.momentum-gallery__viewport:active { cursor: grabbing; }
+.momentum-gallery__track {
+  width: max-content;
+  min-width: 100%;
+  transform: none !important;
+  will-change: auto;
+}
+.momentum-gallery__item {
+  flex: 0 0 clamp(280px, 40vw, 430px);
+  width: clamp(280px, 40vw, 430px);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+.momentum-gallery__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.momentum-gallery__controls > div { display: flex; gap: 8px; }
+.momentum-gallery__controls button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--navy-ink);
+  font-size: 20px;
+  cursor: pointer;
+}
+.momentum-gallery__controls button:hover { border-color: var(--orange-ink); background: var(--tint); }
+.momentum-gallery__controls button:focus-visible,
+.brochure-deck__controls button:focus-visible,
+.brochure-deck__card-actions a:focus-visible,
+.momentum-gallery__caption a:focus-visible {
+  outline: 3px solid var(--orange-ink);
+  outline-offset: 3px;
+}
+.momentum-gallery__image-button { cursor: zoom-in; }
+.momentum-gallery__pdf-preview,
+.brochure-deck__pdf-preview {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: #fff;
+}
+.momentum-gallery__pdf-heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.momentum-gallery__pdf-preview iframe {
+  display: block;
+  width: 100%;
+  height: clamp(300px, 44vh, 470px);
+  border: 0;
+  background: #fff;
+}
+.momentum-gallery__caption a {
+  align-self: flex-start;
+  margin-top: 5px;
+  color: var(--orange-ink);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.momentum-gallery__rail { margin-top: 12px; }
+
+/* Package brochures are all visible in the page, not hidden behind a card
+   deck. Their track scrolls natively when fewer than three fit. */
+.brochure-deck__layout { display: block; }
+.brochure-deck__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin: 0 0 12px;
+}
+.brochure-deck__controls p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.brochure-deck__buttons { flex: none; margin: 0; }
+.brochure-deck__buttons button {
+  min-height: 40px;
+}
+.brochure-deck__track {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 14px 4px 18px;
+  scroll-snap-type: x proximity;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+  scrollbar-width: thin;
+  scrollbar-color: var(--orange-ink) var(--line);
+}
+.brochure-deck__card {
+  position: relative;
+  inset: auto;
+  display: flex;
+  flex: 0 0 clamp(280px, 31%, 400px);
+  flex-direction: column;
+  min-width: 0;
+  height: auto;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 18px;
+  background: var(--paper);
+  box-shadow: var(--shadow-card);
+  transform: none !important;
+  opacity: 1 !important;
+  transition: none;
+  scroll-snap-align: start;
+}
+.brochure-deck__card-top { padding: 18px 18px 12px; }
+.brochure-deck__card-top h3 {
+  margin: 12px 0 7px;
+  color: var(--navy-ink);
+  font-size: clamp(19px, 1.7vw, 25px);
+  line-height: 1.1;
+  letter-spacing: -.025em;
+}
+.brochure-deck__card-top p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.brochure-deck__pdf-preview {
+  flex: 1 1 auto;
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
+}
+.brochure-deck__pdf-preview iframe {
+  display: block;
+  width: 100%;
+  height: clamp(340px, 48vh, 540px);
+  border: 0;
+  background: #fff;
+}
+.brochure-deck__card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 13px 16px 16px;
+}
+.brochure-deck__card-actions a {
+  color: var(--orange-ink);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.brochure-deck__track:focus-visible,
+.momentum-gallery__viewport:focus-visible {
+  outline: 3px solid var(--orange-ink);
+  outline-offset: 4px;
+}
+.brochure-deck__card-link { display: none; }
+
+/* Videos start muted and autoplay when visible. Keep the layout fluid rather
+   than forcing a minimum video width into a narrow split-screen panel. */
+.video-panels__panel { min-width: 0; }
+.video-panels__panel video { min-width: 0; }
+.video-panels__panel video::-webkit-media-controls { z-index: 3; }
+
+@media (max-width: 760px) {
+  .momentum-gallery__item {
+    flex-basis: clamp(280px, 82vw, 390px);
+    width: clamp(280px, 82vw, 390px);
+  }
+  .brochure-deck__controls {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .brochure-deck__card { flex-basis: clamp(280px, 84vw, 390px); }
+  .brochure-deck__pdf-preview iframe { height: clamp(340px, 56vh, 500px); }
+  .video-panels__panel video { min-width: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .momentum-gallery__viewport,
+  .brochure-deck__track { scroll-behavior: auto; }
+  .momentum-gallery__image-button img,
+  .video-panels__panel,
+  .video-panels__copy { transition: none !important; }
+}
