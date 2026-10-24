@@ -8,9 +8,9 @@ export default function ProjectsGrid() {
   return (
     <section className="va-page work-page" aria-labelledby="samples-title">
       <header className="va-page__head work-page__head">
-        <span className="va-eyebrow">Selected work · Creative samples</span>
-        <h1 id="samples-title">Creative work, thoughtful details.</h1>
-        <p>A collection of small-business graphics, brochure documents, and short-form video edits. Each project is grouped by format so you can explore the work at your own pace.</p>
+        <span className="va-eyebrow">Work samples & practice projects</span>
+        <h1 id="samples-title">Creative work for small-business needs.</h1>
+        <p>Explore promotional graphics, event-package brochures, short-form video edits, and a self-directed website project. Professional experience and learning projects are clearly identified.</p>
       </header>
 
       <MomentumGallery />
@@ -55,8 +55,8 @@ export default function ProjectsGrid() {
       </section>
 
       <div className="va-endnote work-endnote">
-        <p>Need graphics, brochures, or short-form edits for your business? Let’s discuss what you have in mind.</p>
-        <Link to="/contact" className="va-button">Discuss your project <ArrowUpRight size={17} aria-hidden="true" /></Link>
+        <p>Need graphics, brochures, or short-form edits for your business? Let’s discuss your support needs.</p>
+        <Link to="/contact" className="va-button">Discuss your support needs <ArrowUpRight size={17} aria-hidden="true" /></Link>
       </div>
     </section>
   )
