@@ -1,13 +1,5 @@
 /**
- * YOUR IDENTITY - start here.
- *
- * Everything that says who you are lives in this file: name, handle, photo,
- * socials, email and the Home headline. Every value below is a PLACEHOLDER.
- * Replace the text, or hand this file to your AI assistant and tell it what
- * to put in each field.
- *
- * Page-specific copy (projects, services, testimonials, FAQs) lives in the
- * other files in src/data/ and at the top of each view component.
+ * Profile identity and Home headline.
  */
 
 import { Briefcase, SealCheck, Clock, type Icon } from '@/components/slab'
@@ -23,7 +15,7 @@ export type Stat = { value: string; label: string; Icon: Icon }
 
 export type Profile = {
   name: string
-  /** First name, used in "Hi, I'm ___." on About. */
+  /** First name, used in "Hi, I'm ___.", on About. */
   firstName: string
   handle: string
   /** Short role line under the handle on phones. */
@@ -46,27 +38,25 @@ export type Profile = {
 }
 
 export const profile: Profile = {
-  name: 'Your Name',
-  firstName: 'Your Name',
-  handle: '@yourhandle',
-  role: 'PLACEHOLDER - your title',
+  name: 'Mirelle Laksamana',
+  firstName: 'Mirelle',
+  handle: '@mirellelaksamana',
+  role: 'Aspiring Virtual Assistant',
   avatarSrc: '/avatar.svg',
-  verifiedLabel: 'PLACEHOLDER - what the tick means (e.g. a certification)',
+  verifiedLabel: 'Portfolio profile',
   email: 'you@example.com',
-  location: 'PLACEHOLDER - your city or timezone',
-  // Pick any icon from https://phosphoricons.com and import it above.
+  location: 'PHT · Philippine Time (UTC+8)',
   stats: [
-    { value: '0 yrs', label: 'PLACEHOLDER', Icon: Briefcase },
-    { value: '#000', label: 'PLACEHOLDER', Icon: SealCheck },
-    { value: 'GMT+0', label: 'PLACEHOLDER', Icon: Clock },
+    { value: '1+ yr', label: 'Customer Support', Icon: Briefcase },
+    { value: 'SME', label: 'Team Support', Icon: SealCheck },
+    { value: 'UTC+8', label: 'Philippine Time', Icon: Clock },
   ],
   // The intro types this line, then flies it into the Home headline.
-  // Keep it short: two halves, 5-8 words total.
-  displayName: { line1: 'Your headline here.', line2: 'Keep it short.' },
+  displayName: { line1: 'Different skills.', line2: 'One thoughtful approach.' },
   hero: {
-    body: 'PLACEHOLDER - one line on what you do and who you do it for.',
+    body: 'A customer service professional with over a year of experience and SME experience supporting teammates, now bringing those skills into virtual assistance and admin support.',
     portraitSrc: '/avatar.svg',
-    portraitAlt: 'Portrait placeholder',
+    portraitAlt: 'Mirelle Laksamana',
   },
   socials: [
     { label: 'Facebook profile', href: '#', iconPath: '/icons/facebook.svg' },
