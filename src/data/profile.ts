@@ -44,7 +44,7 @@ export const profile: Profile = {
   role: 'Aspiring Virtual Assistant',
   avatarSrc: '/avatar.svg',
   verifiedLabel: 'Portfolio profile',
-  email: 'you@example.com',
+  email: 'mirellelaksamana@gmail.com',
   location: 'PHT · Philippine Time (UTC+8)',
   stats: [
     { value: '1+ yr', label: 'Customer Support', Icon: Briefcase },
@@ -58,9 +58,5 @@ export const profile: Profile = {
     portraitSrc: '/avatar.svg',
     portraitAlt: 'Mirelle Laksamana',
   },
-  socials: [
-    { label: 'Facebook profile', href: '#', iconPath: '/icons/facebook.svg' },
-    { label: 'LinkedIn profile', href: '#', iconPath: '/icons/linkedin.svg' },
-    { label: 'Discord profile', href: '#', iconPath: '/icons/discord.svg' },
-  ],
+  socials: [],
 }
