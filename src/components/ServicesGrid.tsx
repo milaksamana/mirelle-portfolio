@@ -7,15 +7,15 @@ const SERVICES = [
   {
     number: '01',
     title: 'Customer support assistance',
-    summary: 'Friendly, clear support that helps customers understand the next step.',
-    examples: ['General inquiry responses', 'Organizing customer information', 'Following approved processes and escalating when needed'],
+    summary: 'Clear, courteous responses that help customers understand their options and next steps.',
+    examples: ['General inquiry responses', 'Accurate customer information updates', 'Following approved processes and escalating complex issues'],
     Icon: ChatCircleDots,
     tag: 'CUSTOMER CARE',
   },
   {
     number: '02',
     title: 'Administrative support',
-    summary: 'Practical help keeping information, records, and everyday tasks organized.',
+    summary: 'Keep everyday information, records, and recurring tasks organized so details are easy to find and follow up on.',
     examples: ['Spreadsheet updates and basic tracking', 'Data organization and recordkeeping', 'Document and checklist preparation'],
     Icon: ClipboardText,
     tag: 'STAY ORGANIZED',
@@ -23,15 +23,15 @@ const SERVICES = [
   {
     number: '03',
     title: 'Social media & creative support',
-    summary: 'Simple, consistent visual content for brands and small businesses.',
+    summary: 'Simple, on-brand visuals and short-form edits to help keep your content consistent.',
     examples: ['Canva graphics and promotional materials', 'Captions and basic social content', 'Short-form edits using CapCut or Filmora'],
     Icon: Palette,
-    tag: 'CREATIVE SUPPORT',
+    tag: 'CREATIVE CONTENT',
   },
   {
     number: '04',
     title: 'Travel support',
-    summary: 'Experience-informed assistance for travel-related requests and itinerary changes.',
+    summary: 'Experience-informed support for travel-related inquiries, itinerary changes, and disruption requests.',
     examples: ['Booking and itinerary support', 'Flight change and disruption requests', 'Familiarity with Amadeus GDS workflows'],
     Icon: AirplaneTilt,
     tag: 'TRAVEL WORKFLOWS',
@@ -130,9 +130,9 @@ export default function ServicesGrid() {
       <section className="services-horizontal va-page" aria-labelledby="services-title" ref={sectionRef} data-static="false">
         <div className="services-stage" ref={stageRef}>
           <header className="va-page__head services-stage__head">
-            <span className="va-eyebrow">Services · Explore horizontally</span>
-            <h1 id="services-title">Practical support, with care in the details.</h1>
-            <p>I’m building my General Virtual Assistant services around the work I know, the tools I use, and the skills I’m continuing to develop.</p>
+            <span className="va-eyebrow">How I can help</span>
+            <h1 id="services-title">Reliable support for the work behind your business.</h1>
+            <p>From customer inquiries and admin organization to travel-related requests and simple creative content, I help keep day-to-day tasks moving with care and clear communication.</p>
           </header>
 
           <div className="services-track-window">
@@ -162,8 +162,11 @@ export default function ServicesGrid() {
         </div>
       </section>
       <div className="va-endnote services-endnote">
-        <p>Every project starts with a conversation about your needs, preferred process, timeline, and scope. I’ll be transparent when a task falls outside my current experience.</p>
-        <Link to="/contact" className="va-button">Discuss a task <ArrowUpRight size={17} aria-hidden="true" /></Link>
+        <div className="va-endnote__copy">
+          <h2>Not sure what kind of support you need?</h2>
+          <p>Tell me what’s taking up your time, and we can discuss the task, your preferred process, scope, and timeline. I’ll be upfront if something falls outside my current experience.</p>
+        </div>
+        <Link to="/contact" className="va-button">Discuss your support needs <ArrowUpRight size={17} aria-hidden="true" /></Link>
       </div>
     </div>
   )
