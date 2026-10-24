@@ -36,8 +36,8 @@ export const profile: Profile = {
   email: 'mirellelaksamana@gmail.com',
   location: 'San Pedro, Laguna, Philippines',
   stats: [
-    { value: '1+ yrs', label: 'customer support', Icon: Briefcase },
-    { value: '2', label: 'travel & automotive sectors', Icon: SealCheck },
+    { value: '1+ yr', label: 'customer support experience', Icon: Briefcase },
+    { value: 'SME', label: 'team support experience', Icon: SealCheck },
     { value: 'PHT', label: 'Philippine Time (UTC+8)', Icon: Clock },
   ],
   displayName: { line1: 'Thoughtful support.', line2: 'Creative assistance.' },
