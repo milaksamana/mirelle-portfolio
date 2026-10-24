@@ -2,6 +2,7 @@ import { lazy, Suspense, useState, useEffect, useLayoutEffect, useRef } from 're
 import { Outlet, useLocation } from 'react-router-dom'
 import IntroOverlay from '@/components/IntroOverlay'
 import CursorRing from '@/components/CursorRing'
+import DotSpotlightBackground from '@/components/DotSpotlightBackground'
 import AccessMenu from '@/components/AccessMenu'
 import DynamicIslandNav from '@/components/DynamicIslandNav'
 import { motionReduced } from '@/lib/a11y'
@@ -87,8 +88,9 @@ export default function App() {
     <>
       <IntroOverlay />
       <CursorRing />
+      {pathname === '/' && <DotSpotlightBackground />}
       <a href={`#${SCROLLER_ID}`} className="skip-link">Skip to main content</a>
-      {shouldLoadCanvas && perfTier !== 'low' && (
+      {shouldLoadCanvas && perfTier !== 'low' && pathname !== '/' && (
         <Suspense fallback={null}>
           <HeroCanvas />
         </Suspense>
