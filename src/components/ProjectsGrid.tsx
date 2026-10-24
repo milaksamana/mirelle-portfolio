@@ -44,9 +44,8 @@ export default function ProjectsGrid() {
           <p className="work-browser__caption">A responsive layout concept · Desktop and split-screen friendly</p>
         </div>
         <div className="work-website-project__copy">
-          <span className="va-eyebrow">Web design · Learning project</span>
+          <span className="va-eyebrow">Web Design</span>
           <h2 id="website-project-title">Building a Simple, Responsive Website</h2>
-          <p>A hands-on learning project where I’m practising responsive layouts, visual hierarchy, and front-end fundamentals while building my own portfolio.</p>
           <div className="work-website-project__skills" aria-label="Skills practised">
             <span>Responsive layout</span>
             <span>React & CSS</span>
@@ -56,8 +55,8 @@ export default function ProjectsGrid() {
       </section>
 
       <div className="va-endnote work-endnote">
-        <p>These samples represent different small-business and editing projects. Read the package brochures directly on this page, select a graphic to view it larger, or play a short-form video sample.</p>
-        <Link to="/contact" className="va-button">Discuss a task <ArrowUpRight size={17} aria-hidden="true" /></Link>
+        <p>Need graphics, brochures, or short-form edits for your business? Let’s discuss what you have in mind.</p>
+        <Link to="/contact" className="va-button">Discuss your project <ArrowUpRight size={17} aria-hidden="true" /></Link>
       </div>
     </section>
   )
