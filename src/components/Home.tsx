@@ -39,6 +39,26 @@ export default function Home() {
       {phone && <HomeProfile />}
 
       <div className="home__head">
+        {!phone && (
+          <div className="home__identity" aria-label="Profile details">
+            <div className="home__identity-copy">
+              <p className="home__identity-name">{profile.name}</p>
+              <p className="home__identity-role">{profile.handle}</p>
+            </div>
+            <ul className="home__facts" aria-label="Experience and timezone">
+              {profile.stats.map(({ value, label, Icon }) => (
+                <li className="home__fact" key={label}>
+                  <Icon size={14} weight="duotone" aria-hidden="true" />
+                  <span className="home__fact-copy">
+                    <strong>{value}</strong>
+                    <span>{label}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className="home__headline">
           <h1 className="home__title" id="home-title">
             <span className="home__line">
