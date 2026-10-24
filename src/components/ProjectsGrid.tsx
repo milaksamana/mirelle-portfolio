@@ -38,7 +38,7 @@ export default function ProjectsGrid() {
       </section>
 
       <div className="va-endnote work-endnote">
-        <p>These samples represent different small-business and editing projects. Brochure documents open separately; video previews and full-size graphic previews will work after the matching files are uploaded to the repository.</p>
+        <p>These samples represent different small-business and editing projects. Open a brochure PDF in a new tab, select a graphic to view it larger, or expand a video panel to explore a short-form edit.</p>
         <Link to="/contact" className="va-button">Discuss a task <ArrowUpRight size={17} aria-hidden="true" /></Link>
       </div>
     </section>
