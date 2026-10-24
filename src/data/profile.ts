@@ -34,15 +34,15 @@ export const profile: Profile = {
   // No verification badge is shown; no formal VA credential is being claimed.
   verifiedLabel: '',
   email: 'mirellelaksamana@gmail.com',
-  location: 'San Pedro, Laguna, Philippines',
+  location: 'Philippines',
   stats: [
-    { value: '1+ yr', label: 'customer support experience', Icon: Briefcase },
+    { value: '2 yrs', label: 'professional experience', Icon: Briefcase },
     { value: 'SME', label: 'team support experience', Icon: SealCheck },
     { value: 'PHT', label: 'Philippine Time (UTC+8)', Icon: Clock },
   ],
   displayName: { line1: 'Thoughtful support.', line2: 'Creative assistance.' },
   hero: {
-    body: 'I bring customer support experience, organized admin skills, and creative content support to help busy teams keep things moving.',
+    body: 'I bring 2 years of professional experience, combining customer support, organized admin skills, and creative content support to help busy teams keep things moving.',
     portraitSrc: '/mirelle-profile.png',
     portraitAlt: 'Portrait of Mirelle Laksamana',
   },
