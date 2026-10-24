@@ -1,7 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowUpRight, ChatCircleDots, ClipboardText, Palette, AirplaneTilt } from '@/components/slab'
-import { getScroller } from '@/hooks/useLenis'
 
 const SERVICES = [
   {
@@ -36,109 +35,101 @@ const SERVICES = [
     Icon: AirplaneTilt,
     tag: 'TRAVEL WORKFLOWS',
   },
-]
+] as const
 
-const clamp = (value: number, min: number, max: number) => Math.min(max, Math.max(min, value))
+type Direction = -1 | 1
 
 export default function ServicesGrid() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const stageRef = useRef<HTMLDivElement>(null)
+  const viewportRef = useRef<HTMLDivElement>(null)
   const trackRef = useRef<HTMLDivElement>(null)
-  const frameRef = useRef<number | null>(null)
+  const [progress, setProgress] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const updateScroll = useCallback(() => {
+    const viewport = viewportRef.current
+    const track = trackRef.current
+    if (!viewport || !track) return
+
+    const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth)
+    setProgress(maxScroll === 0 ? 0 : Math.min(1, Math.max(0, viewport.scrollLeft / maxScroll)))
+
+    const center = viewport.getBoundingClientRect().left + viewport.clientWidth / 2
+    let nearestIndex = 0
+    let nearestDistance = Number.POSITIVE_INFINITY
+    track.querySelectorAll<HTMLElement>('.service-panel').forEach((card, index) => {
+      const rect = card.getBoundingClientRect()
+      const distance = Math.abs(rect.left + rect.width / 2 - center)
+      if (distance < nearestDistance) {
+        nearestDistance = distance
+        nearestIndex = index
+      }
+    })
+    setActiveIndex(nearestIndex)
+  }, [])
+
+  const scrollServices = useCallback((direction: Direction) => {
+    const viewport = viewportRef.current
+    const track = trackRef.current
+    if (!viewport || !track) return
+
+    const firstCard = track.querySelector<HTMLElement>('.service-panel')
+    const gap = Number.parseFloat(window.getComputedStyle(track).columnGap || window.getComputedStyle(track).gap) || 24
+    const distance = firstCard ? firstCard.getBoundingClientRect().width + gap : viewport.clientWidth * 0.85
+
+    viewport.scrollBy({
+      left: direction * distance,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+    })
+  }, [])
 
   useEffect(() => {
-    const section = sectionRef.current
-    const stage = stageRef.current
+    const viewport = viewportRef.current
     const track = trackRef.current
-    const viewport = stage?.querySelector<HTMLElement>('.services-track-window')
-    const scroller = getScroller()
-    if (!section || !stage || !track || !viewport || !scroller) return
+    if (!viewport || !track) return
 
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
-    let travel = 0
-
-    const measure = () => {
-      if (window.innerWidth < 1100 || reducedMotion.matches) {
-        section.style.height = ''
-        track.style.transform = ''
-        section.dataset.static = 'true'
-        return
-      }
-
-      section.dataset.static = 'false'
-      travel = Math.max(0, track.scrollWidth - viewport.clientWidth)
-      section.style.height = `${stage.clientHeight + travel}px`
-      schedule()
-    }
-
-    const update = () => {
-      frameRef.current = null
-      if (window.innerWidth < 1100 || reducedMotion.matches) return
-
-      const sectionTop = section.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop
-      const maxScroll = Math.max(0, section.offsetHeight - stage.clientHeight)
-      const progress = maxScroll > 0 ? clamp(scroller.scrollTop - sectionTop, 0, maxScroll) / maxScroll : 0
-      const distance = Math.max(0, track.scrollWidth - viewport.clientWidth)
-      track.style.transform = `translate3d(${-progress * distance}px, 0, 0)`
-
-      let closest: HTMLElement | null = null
-      let closestDistance = Number.POSITIVE_INFINITY
-      const center = viewport.getBoundingClientRect().left + viewport.clientWidth / 2
-      track.querySelectorAll<HTMLElement>('.service-panel').forEach((card) => {
-        const rect = card.getBoundingClientRect()
-        const distanceFromCenter = Math.abs(rect.left + rect.width / 2 - center)
-        const active = distanceFromCenter < closestDistance
-        if (active) {
-          closestDistance = distanceFromCenter
-          closest = card
-        }
-      })
-      track.querySelectorAll<HTMLElement>('.service-panel').forEach((card) => {
-        if (card === closest) card.dataset.active = 'true'
-        else delete card.dataset.active
-      })
-      const progressBar = stage.querySelector<HTMLElement>('.services-progress__fill')
-      if (progressBar) progressBar.style.transform = `scaleX(${progress})`
-    }
-
-    function schedule() {
-      if (frameRef.current === null) frameRef.current = requestAnimationFrame(update)
-    }
-
-    const resizeObserver = new ResizeObserver(measure)
-    resizeObserver.observe(stage)
-    resizeObserver.observe(track)
-    scroller.addEventListener('scroll', schedule, { passive: true })
-    window.addEventListener('resize', measure)
-    reducedMotion.addEventListener('change', measure)
-    measure()
-    schedule()
-
-    return () => {
-      resizeObserver.disconnect()
-      scroller.removeEventListener('scroll', schedule)
-      window.removeEventListener('resize', measure)
-      reducedMotion.removeEventListener('change', measure)
-      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current)
-      section.style.height = ''
-      track.style.transform = ''
-    }
-  }, [])
+    updateScroll()
+    const observer = new ResizeObserver(updateScroll)
+    observer.observe(viewport)
+    observer.observe(track)
+    return () => observer.disconnect()
+  }, [updateScroll])
 
   return (
     <div className="services-page-wrap">
-      <section className="services-horizontal va-page" aria-labelledby="services-title" ref={sectionRef} data-static="false">
-        <div className="services-stage" ref={stageRef}>
+      <section className="services-horizontal va-page" aria-labelledby="services-title">
+        <div className="services-stage">
           <header className="va-page__head services-stage__head">
             <span className="va-eyebrow">How I can help</span>
             <h1 id="services-title">Reliable support for the work behind your business.</h1>
             <p>From customer inquiries and admin organization to travel-related requests and simple creative content, I help keep day-to-day tasks moving with care and clear communication.</p>
           </header>
 
-          <div className="services-track-window">
+          <div
+            className="services-track-window"
+            ref={viewportRef}
+            tabIndex={0}
+            role="region"
+            aria-label="Horizontally scrollable service cards"
+            onScroll={updateScroll}
+            onKeyDown={(event) => {
+              if (event.target !== event.currentTarget) return
+              if (event.key === 'ArrowLeft') {
+                event.preventDefault()
+                scrollServices(-1)
+              }
+              if (event.key === 'ArrowRight') {
+                event.preventDefault()
+                scrollServices(1)
+              }
+            }}
+          >
             <div className="services-track" ref={trackRef}>
-              {SERVICES.map(({ Icon, ...service }) => (
-                <article className="service-panel" key={service.number}>
+              {SERVICES.map(({ Icon, ...service }, index) => (
+                <article
+                  className="service-panel"
+                  key={service.number}
+                  data-active={activeIndex === index ? 'true' : undefined}
+                >
                   <div className="service-panel__top">
                     <span className="service-panel__icon"><Icon size={25} weight="duotone" aria-hidden="true" /></span>
                     <span className="service-panel__number">{service.number}</span>
@@ -155,10 +146,16 @@ export default function ServicesGrid() {
             </div>
           </div>
 
-          <div className="services-stage__hint" aria-hidden="true">
-            <span>Scroll to explore</span><span className="services-stage__hint-arrow">→</span>
+          <div className="services-stage__hint">
+            <span>Service {String(activeIndex + 1).padStart(2, '0')} of {String(SERVICES.length).padStart(2, '0')} · Scroll or swipe to explore</span>
+            <div className="services-stage__controls" aria-label="Service card navigation">
+              <button type="button" onClick={() => scrollServices(-1)} disabled={activeIndex === 0} aria-label="Previous service">←</button>
+              <button type="button" onClick={() => scrollServices(1)} disabled={activeIndex === SERVICES.length - 1} aria-label="Next service">→</button>
+            </div>
           </div>
-          <div className="services-progress" aria-hidden="true"><span className="services-progress__fill" /></div>
+          <div className="services-progress" aria-hidden="true">
+            <span className="services-progress__fill" style={{ transform: `scaleX(${progress})` }} />
+          </div>
         </div>
       </section>
       <div className="va-endnote services-endnote">
