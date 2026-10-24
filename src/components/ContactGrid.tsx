@@ -19,7 +19,6 @@ export default function ContactGrid() {
           {profile.email ? (
             <div className="va-contact-actions">
               <a className="va-button" href={`mailto:${profile.email}`}>Email Mirelle <EnvelopeSimple size={17} aria-hidden="true" /></a>
-              <a className="va-contact-email" href={`mailto:${profile.email}`}>{profile.email}</a>
             </div>
           ) : (
             <span className="va-contact-pending"><EnvelopeSimple size={17} aria-hidden="true" /> Direct contact link to be added before launch</span>
