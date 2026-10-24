@@ -8,26 +8,11 @@ import { useScrollReveal } from '@/hooks/useScrollReveal'
 import { useIsPhone } from '@/hooks/useMediaQuery'
 import HomeStory from './HomeStory'
 import PullQuote from './PullQuote'
+import QuickMenu from './QuickMenu'
 
 /**
- * Home. One viewport, three bands, no scroll:
- *
- *   head       the display line the intro writes, then the lede
- *   tools      "Tools I work with" beside the marquee, on its own plate
- *   showcase   the bento - one card per view, see HomeBento - on its own
- *
- * The grid is `auto auto 1fr` so the showcase absorbs the slack instead of
- * pushing the panel into a scrollbar. Every other view scrolls; this one is
- * laid out to the box.
- *
- * On a phone the page becomes an app screen: a profile header where the rail
- * used to be, the proof stats under the lede, and the bento replaced by a
- * snap row of tiles (HomeMobile). The CTA leaves the head - the tab bar's
- * Contact action carries it on every screen.
- *
- * `.home__title` is also the intro's landing target: IntroOverlay measures it
- * and flies its copy into this exact rect, so the line the visitor watched
- * being written is the line that stays on the page.
+ * Home's opening composition: profile, headline, introduction, then the
+ * full-width three-part proof bar. Supporting portfolio content follows it.
  */
 export default function Home() {
   useScrollReveal()
@@ -36,29 +21,23 @@ export default function Home() {
 
   return (
     <section className="home" aria-labelledby="home-title">
-      {phone && <HomeProfile />}
+      {phone ? (
+        <HomeProfile />
+      ) : (
+        <header className="home__profile">
+          <img className="home__profile-avatar" src={profile.avatarSrc} alt="" width={56} height={56} />
+          <div className="home__profile-copy">
+            <p className="home__profile-name">{profile.name}</p>
+            <p className="home__profile-role">
+              {profile.handle} <span aria-hidden="true">·</span> {profile.role}
+            </p>
+            <p className="home__profile-meta">{profile.location}</p>
+          </div>
+          <QuickMenu className="home__profile-menu" />
+        </header>
+      )}
 
       <div className="home__head">
-        {!phone && (
-          <div className="home__identity" aria-label="Profile details">
-            <div className="home__identity-copy">
-              <p className="home__identity-name">{profile.name}</p>
-              <p className="home__identity-role">{profile.handle}</p>
-            </div>
-            <ul className="home__facts" aria-label="Experience and timezone">
-              {profile.stats.map(({ value, label, Icon }) => (
-                <li className="home__fact" key={label}>
-                  <Icon size={14} weight="duotone" aria-hidden="true" />
-                  <span className="home__fact-copy">
-                    <strong>{value}</strong>
-                    <span>{label}</span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
         <div className="home__headline">
           <h1 className="home__title" id="home-title">
             <span className="home__line">
@@ -76,12 +55,9 @@ export default function Home() {
         </div>
 
         <p className="home__lede">{hero.body}</p>
-        {phone && <HomeStats />}
+        <HomeStats />
       </div>
 
-      {/* Two plates, not one. The tools band and the bento are different
-          objects - a strip you read across and a grid you pick from - and one
-          shared sheet made the strip look like the bento's header. */}
       <div className="home__glass home__glass--tools">
         <div className="home__tools">
           <div className="home__tools-head">
