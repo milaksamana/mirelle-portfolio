@@ -75,11 +75,11 @@ export default function AboutGrid() {
       <header className="va-page__head">
         <span className="va-eyebrow">About me</span>
         <h1 id="about-title">Hi, I’m Mirelle.</h1>
-        <p className="va-lede">Customer support professional bringing clear communication, organized administrative help, and thoughtful creative support.</p>
+        <p className="va-lede">I bring two years of professional experience across customer support, travel operations, and creative work to the way I communicate, organize, and support a team.</p>
       </header>
       <div className="va-about-intro">
-        <p>I enjoy bringing order to information, helping people find the next step, and learning tools that make work easier. My background spans non-voice customer service, travel support, SME guidance, spreadsheet-based tasks, and digital marketing assistance.</p>
-        <p>I’m a fast learner, an active listener, and an observant teammate. I try to stay calm under pressure, communicate clearly, and ask rather than assume when a process needs clarification.</p>
+        <p>I listen carefully, keep details organized, and follow established processes. When something is unclear or needs specialist attention, I ask questions and escalate rather than guess.</p>
+        <p>I’m bringing this experience into General VA support, with a focus on customer communication, admin organization, and simple creative tasks.</p>
       </div>
       <section className="va-subsection" aria-labelledby="experience-title">
         <div className="va-subsection__head">
@@ -101,7 +101,7 @@ export default function AboutGrid() {
         </ol>
       </section>
       <div className="va-endnote">
-        <p>My next step is to bring these skills into a General VA role, keep learning, and build trust through reliable day-to-day support.</p>
+        <p>Looking for thoughtful help with everyday tasks? Explore the services I can support.</p>
         <Link to="/services" className="va-button">Explore my services <ArrowUpRight size={17} aria-hidden="true" /></Link>
       </div>
     </section>
