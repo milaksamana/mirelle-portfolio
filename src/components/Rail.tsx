@@ -30,7 +30,7 @@ export const RAIL_LINKS = [
   { label: 'Services', to: '/services', Icon: StackIcon },
   { label: 'Work Samples', to: '/projects', Icon: FolderIcon },
   { label: 'My Journey', to: '/showcase', Icon: CupIcon },
-  { label: 'My Approach', to: '/testimonials', Icon: StarIcon },
+  { label: 'How I Work', to: '/testimonials', Icon: StarIcon },
   { label: 'Contact', to: '/contact', Icon: MessageIcon },
 ] as const
 
