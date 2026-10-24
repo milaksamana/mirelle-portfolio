@@ -51,6 +51,7 @@ import './styles/interaction-pass.css'
 // Last: the perf tiers only ever turn things OFF, so they must win.
 import './styles/perf.css'
 import './styles/media-fixes.css'
+import './styles/dot-spotlight.css'
 
 // Re-apply this tab's performance verdict before the first paint, so a
 // downgraded visitor never sees the expensive layers flash back on reload.
