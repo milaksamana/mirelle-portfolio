@@ -27,12 +27,12 @@ export default function BrochureDeck() {
     <section className="brochure-deck" aria-labelledby="brochure-deck-title">
       <div className="work-section-heading">
         <span className="va-eyebrow">Brochure Package</span>
-        <h2 id="brochure-deck-title">Explore the packages right here.</h2>
-        <p>Browse each brochure directly on this page. The previews stay within the portfolio, with no separate open or download buttons.</p>
+        <h2 id="brochure-deck-title">Package materials from my work with Sanz Studio by HotShoe.</h2>
+        <p>Explore debut, wedding, and children’s event packages to see how information is organized for customers comparing options.</p>
       </div>
 
       <div className="brochure-deck__controls" aria-label="Package brochure navigation">
-        <p>Three Sanz Studio by HotShoe brochures · Inline document previews</p>
+        <p>Debut, wedding, and children’s event packages</p>
         <div className="brochure-deck__buttons">
           <button type="button" onClick={() => scrollPackages(trackRef.current, -1)} aria-label="Scroll packages left">← Previous</button>
           <button type="button" onClick={() => scrollPackages(trackRef.current, 1)} aria-label="Scroll packages right">Next →</button>
