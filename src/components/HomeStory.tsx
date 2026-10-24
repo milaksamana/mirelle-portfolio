@@ -5,19 +5,16 @@ const STEPS = [
     number: '01',
     label: 'TRAVEL SUPPORT',
     title: 'Details matter when plans change.',
-    body: 'Working with travel requests taught me to check itineraries carefully, explain options clearly, and keep the next step visible when plans shift.',
   },
   {
     number: '02',
     label: 'CUSTOMER SUPPORT & SME',
     title: 'Good support is a mix of care and process.',
-    body: 'In automotive chat support and my SME assignment, I learned to follow approved workflows, help teammates navigate tools, and escalate what needs specialist review.',
   },
   {
     number: '03',
     label: 'CREATIVE WORK & LEARNING',
     title: 'I keep building on what I know.',
-    body: 'My digital marketing experience introduced me to Canva graphics and publication materials. Now I’m growing those skills alongside website design and short-form editing.',
   },
 ]
 
@@ -60,7 +57,6 @@ export default function HomeStory() {
               <span className="va-eyebrow">{step.label}</span>
               <span className="home-story__number">{step.number}</span>
               <h3>{step.title}</h3>
-              <p>{step.body}</p>
             </div>
           </article>
         ))}
