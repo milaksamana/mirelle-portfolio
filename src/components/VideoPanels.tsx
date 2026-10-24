@@ -8,6 +8,10 @@ const VIDEOS = [
   { src: '/samples/videos/short-vlog-template.mp4', title: 'Short Vlog Template', subtitle: 'Vlog pacing · CapCut', alt: 'Short vlog template edited in CapCut' },
 ]
 
+function discourageSaving(event: React.SyntheticEvent) {
+  event.preventDefault()
+}
+
 export default function VideoPanels() {
   const [active, setActive] = useState(0)
   const videoRefs = useRef<Array<HTMLVideoElement | null>>([])
@@ -56,6 +60,7 @@ export default function VideoPanels() {
             onPointerEnter={() => setActive(index)}
             onFocus={() => setActive(index)}
             onClick={() => setActive(index)}
+            onContextMenu={discourageSaving}
             onKeyDown={(event) => {
               if (event.target !== event.currentTarget) return
               if (event.key === 'Enter' || event.key === ' ') {
@@ -73,6 +78,9 @@ export default function VideoPanels() {
               playsInline
               preload="metadata"
               controls={active === index}
+              controlsList="nodownload noremoteplayback"
+              disablePictureInPicture
+              onContextMenu={discourageSaving}
               aria-label={video.alt}
             />
             <span className="video-panels__scrim" aria-hidden="true" />
