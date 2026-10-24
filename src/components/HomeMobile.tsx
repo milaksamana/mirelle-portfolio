@@ -32,10 +32,10 @@ export function HomeStats() {
 }
 
 const TILES = [
-  { n: '01', label: 'Work samples', to: '/projects', title: 'Practice projects, clearly labelled.', desc: 'Examples made to demonstrate my approach.', Icon: FolderOpen },
-  { n: '02', label: 'Services', to: '/services', title: 'Support that keeps work moving.', desc: 'Customer, admin, and creative assistance.', Icon: Stack },
-  { n: '03', label: 'About me', to: '/about', title: `Hi, I'm ${profile.firstName}.`, desc: 'My experience and working strengths.', Icon: User },
-  { n: '04', label: 'My journey', to: '/showcase', title: 'Experience meets continued learning.', desc: 'The tools and skills I am building on.', Icon: Compass },
+  { n: '01', label: 'Work samples', to: '/projects', title: 'Examples of my work', desc: 'Business graphics, brochures, short-form edits, and a website project.', Icon: FolderOpen },
+  { n: '02', label: 'Services', to: '/services', title: 'Practical support for everyday business needs', desc: 'Customer support, admin organization, travel, and simple creative content.', Icon: Stack },
+  { n: '03', label: 'About me', to: '/about', title: 'The experience behind my support', desc: 'My background in customer support, travel, and creative work.', Icon: User },
+  { n: '04', label: 'My journey', to: '/showcase', title: 'Experience, plus continued growth', desc: 'How my previous roles and self-directed learning shape my VA support.', Icon: Compass },
 ] as const
 
 export function HomeExplore() {
@@ -61,8 +61,8 @@ export function HomeExplore() {
       </ul>
       <div className="mobile-principles">
         <span className="va-eyebrow">How I work</span>
-        <h2>Thoughtful, organized, and open to learning.</h2>
-        <p>I aim to communicate clearly, follow processes carefully, and ask questions when I need context rather than make assumptions.</p>
+        <h2>Clear communication. Careful follow-through.</h2>
+        <p>I follow instructions carefully, keep details organized, and ask questions when something needs clarification—so tasks are handled thoughtfully, not on assumptions.</p>
         <Link to="/testimonials" className="va-text-link">My approach <ArrowUpRight size={16} aria-hidden="true" /></Link>
       </div>
     </section>
