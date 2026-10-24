@@ -19,12 +19,28 @@ export default function VideoPanels() {
       </div>
       <div className="video-panels__row">
         {VIDEOS.map((video, index) => (
-          <button key={video.src} type="button" className={`video-panels__panel ${active === index ? 'is-active' : ''}`} aria-expanded={active === index} aria-label={`${video.title}: ${video.subtitle}`} onPointerEnter={() => setActive(index)} onFocus={() => setActive(index)} onClick={() => setActive(index)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setActive(index) }}>
+          <div
+            key={video.src}
+            className={`video-panels__panel ${active === index ? 'is-active' : ''}`}
+            role="group"
+            tabIndex={0}
+            aria-label={`${video.title}: ${video.subtitle}`}
+            onPointerEnter={() => setActive(index)}
+            onFocus={() => setActive(index)}
+            onClick={() => setActive(index)}
+            onKeyDown={(e) => {
+              if (e.target !== e.currentTarget) return
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault()
+                setActive(index)
+              }
+            }}
+          >
             <video src={video.src} muted loop playsInline preload="metadata" controls={active === index} aria-label={video.alt} />
-            <span className="video-panels__scrim" />
-            <span className="video-panels__number">{String(index + 1).padStart(2, '0')}</span>
+            <span className="video-panels__scrim" aria-hidden="true" />
+            <span className="video-panels__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
             <span className="video-panels__copy"><strong>{video.title}</strong><small>{video.subtitle}</small><span className="video-panels__play">Play video ↗</span></span>
-          </button>
+          </div>
         ))}
       </div>
     </section>
