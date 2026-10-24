@@ -26,7 +26,7 @@ export default function BrochureDeck() {
   return (
     <section className="brochure-deck" aria-labelledby="brochure-deck-title">
       <div className="work-section-heading">
-        <span className="va-eyebrow">Event photography brochures</span>
+        <span className="va-eyebrow">Brochure Package</span>
         <h2 id="brochure-deck-title">Explore the packages right here.</h2>
         <p>Browse each brochure directly on this page. The previews stay within the portfolio, with no separate open or download buttons.</p>
       </div>
