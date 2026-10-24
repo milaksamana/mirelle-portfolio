@@ -3,9 +3,9 @@ import { useState } from 'react'
 type Card = { title: string; description: string; href: string; label: string }
 
 const INITIAL_CARDS: Card[] = [
-  { title: 'Debut Packages', description: 'Sanz Studio by HotShoe · Event photography package brochure', href: '/samples/brochures/hotshoe/debut-package-2023.pdf', label: 'Photography brochure' },
-  { title: 'Wedding Packages', description: 'Sanz Studio by HotShoe · Wedding photography and video packages', href: '/samples/brochures/hotshoe/wedding-packages-2023.pdf', label: 'Photography brochure' },
-  { title: 'Kiddie Packages', description: 'Sanz Studio by HotShoe · Children’s event photography packages', href: '/samples/brochures/hotshoe/kiddie-packages-2023.pdf', label: 'Photography brochure' },
+  { title: 'Debut Packages', description: 'Sanz Studio by HotShoe · Event photography package brochure', href: '/samples/brochures/debut-package-2023.pdf', label: 'Photography brochure' },
+  { title: 'Wedding Packages', description: 'Sanz Studio by HotShoe · Wedding photography and video packages', href: '/samples/brochures/wedding-packages-2023.pdf', label: 'Photography brochure' },
+  { title: 'Kiddie Packages', description: 'Sanz Studio by HotShoe · Children’s event photography packages', href: '/samples/brochures/kiddie-packages-2023.pdf', label: 'Photography brochure' },
 ]
 
 export default function BrochureDeck() {
@@ -49,7 +49,7 @@ export default function BrochureDeck() {
   return (
     <section className="brochure-deck" aria-labelledby="brochure-deck-title">
       <div className="work-section-heading">
-        <span className="va-eyebrow">Brochure & menu documents</span>
+        <span className="va-eyebrow">Event photography brochures</span>
         <h2 id="brochure-deck-title">Swipe through the pages.</h2>
         <p>Browse the event-photography package brochures created for Sanz Studio by HotShoe. Drag or use your keyboard to cycle through the cards, then open a PDF to review the complete design.</p>
       </div>
