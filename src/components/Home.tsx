@@ -48,7 +48,7 @@ export default function Home() {
 
           {!phone && (
             <Link className="home__cta" to="/contact">
-              Get in touch
+              Discuss your support needs
               <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
             </Link>
           )}
