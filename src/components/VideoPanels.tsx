@@ -46,8 +46,8 @@ export default function VideoPanels() {
     <section className="video-panels" aria-labelledby="video-panels-title">
       <div className="work-section-heading">
         <span className="va-eyebrow">Short-form video editing</span>
-        <h2 id="video-panels-title">A few ways I work with motion.</h2>
-        <p>Selected CapCut projects, from seasonal templates to keyframes, masking, and vlog edits. Videos autoplay muted when visible; use the player controls to pause or replay a clip.</p>
+        <h2 id="video-panels-title">Short edits with pace, text, and movement.</h2>
+        <p>CapCut samples exploring seasonal templates, animated text, masking, overlays, and vlog-style pacing.</p>
       </div>
       <div className="video-panels__row">
         {VIDEOS.map((video, index) => (
