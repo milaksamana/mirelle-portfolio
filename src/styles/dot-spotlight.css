@@ -1,0 +1,55 @@
+/* Homepage-only animated dot grid. Content stays in its own higher layer. */
+.dot-spotlight-background {
+  --spot-x: 50vw;
+  --spot-y: 42vh;
+  --dot-grid-color: rgba(70, 91, 128, 0.25);
+  --dot-accent-color: rgba(183, 138, 11, 0.78);
+  --dot-spotlight-glow: rgba(231, 183, 45, 0.13);
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  isolation: isolate;
+  background: var(--cream);
+}
+
+.dot-spotlight-background__base,
+.dot-spotlight-background__accent,
+.dot-spotlight-background__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.dot-spotlight-background__base {
+  z-index: 0;
+  background-image: radial-gradient(circle, var(--dot-grid-color) 1.3px, transparent 1.8px);
+  background-size: 16px 16px;
+}
+
+.dot-spotlight-background__accent {
+  z-index: 1;
+  background-image: radial-gradient(circle, var(--dot-accent-color) 1.7px, transparent 2.35px);
+  background-size: 16px 16px;
+  -webkit-mask-image: radial-gradient(circle 80px at var(--spot-x) var(--spot-y), #000 0%, transparent 100%);
+  mask-image: radial-gradient(circle 80px at var(--spot-x) var(--spot-y), #000 0%, transparent 100%);
+}
+
+.dot-spotlight-background__glow {
+  z-index: 2;
+  background-image: radial-gradient(circle 230px at var(--spot-x) var(--spot-y), var(--dot-spotlight-glow) 0%, transparent 100%);
+}
+
+[data-theme='dark'] .dot-spotlight-background {
+  --dot-grid-color: rgba(237, 240, 246, 0.19);
+  --dot-accent-color: rgba(255, 220, 132, 0.88);
+  --dot-spotlight-glow: rgba(231, 183, 45, 0.10);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot-spotlight-background {
+    --spot-x: 50vw;
+    --spot-y: 42vh;
+  }
+}
