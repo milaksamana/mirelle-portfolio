@@ -320,7 +320,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--orange-ink); ou
 
 /* Work gallery interactions: drag strip, swipeable documents, expanding videos. */
 .work-section-heading { max-width: 760px; margin: 0 0 22px; }
-.work-section-heading h2 { margin: 8px 0 10px; color: var(--navy-ink); font-size: clamp(25px, 3vw, 38px); line-height: 1.08; letter-spacing: -.035em; }
+.work-section-heading h2 { margin: 8px 0 10px; color: var(--navy); font-size: clamp(25px, 3vw, 38px); line-height: 1.08; letter-spacing: -.035em; }
 .work-section-heading p { max-width: 620px; margin: 0; color: var(--muted); line-height: 1.65; }
 .momentum-gallery, .brochure-deck, .video-panels { margin: clamp(44px, 7vw, 88px) 0; }
 .momentum-gallery__viewport { overflow: hidden; cursor: grab; touch-action: pan-y; outline: none; }
