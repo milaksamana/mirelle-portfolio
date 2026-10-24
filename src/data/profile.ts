@@ -28,12 +28,11 @@ export type Profile = {
 export const profile: Profile = {
   name: 'Mirelle Laksamana',
   firstName: 'Mirelle',
-  handle: 'Customer Support Professional',
+  handle: 'Aspiring Virtual Assistant',
   role: 'Administrative & Creative Support',
   avatarSrc: '/mirelle-profile.png',
   // No verification badge is shown; no formal VA credential is being claimed.
   verifiedLabel: '',
-  // Public contact address supplied by Mirelle.
   email: 'mirellelaksamana@gmail.com',
   location: 'San Pedro, Laguna, Philippines',
   stats: [
