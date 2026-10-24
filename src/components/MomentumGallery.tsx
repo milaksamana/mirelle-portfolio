@@ -6,7 +6,7 @@ type ImageItem = Item & { src: string }
 const ITEMS: Item[] = [
   { src: '/samples/creative/sweet-serenade-logo.jpeg', alt: 'Sweet Serenade circular mango tapioca drink logo with a yellow scalloped border', title: 'Sweet Serenade', caption: 'Brand identity · Logo design' },
   { src: '/samples/creative/mango-tapioca-promo.png', alt: 'Mango tapioca promotional graphic with a yellow drink, mango splash, fruit cubes, and green leaves', title: 'Mango Tapioca', caption: 'Small-business promotional graphic' },
-  { src: '/samples/creative/baker-bee-mini-donut-menu.png', alt: 'Baker Bee mini-donut menu showing flavors, toppings, and package prices', title: 'Baker Bee · Menu', caption: 'Small-business menu design', pdf: '/samples/creative/baker-bee-mini-donut-menu.pdf', pdfLabel: 'Open menu PDF' },
+  { src: '/samples/creative/baker-bee-mini-donut-menu.png', alt: 'Baker Bee mini-donut menu showing flavors, toppings, and package prices', title: 'Baker Bee · Menu', caption: 'Small-business menu design' },
   { alt: 'Baker Bee mini-donut branding and logo artwork presented in a PDF document', title: 'Baker Bee · Branding', caption: 'Mini-donut brand artwork', pdf: '/samples/creative/baker-bee-mini-donut-branding.pdf', pdfLabel: 'Open branding PDF' },
 ]
 
