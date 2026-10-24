@@ -38,8 +38,8 @@ export default function MomentumGallery() {
     <section className="momentum-gallery" aria-labelledby="creative-gallery-title">
       <div className="work-section-heading">
         <span className="va-eyebrow">Branding Graphics</span>
-        <h2 id="creative-gallery-title">Small-business visuals, made with care.</h2>
-        <p>Logo design, product promotion, and menu materials grouped into one creative gallery. Scroll sideways, swipe, or use the arrows to browse every sample.</p>
+        <h2 id="creative-gallery-title">Practical visuals that make an offer easy to understand.</h2>
+        <p>Logo, product-promotion, and menu-design samples created to communicate small-business offers clearly.</p>
       </div>
 
       <div className="momentum-gallery__controls" aria-label="Creative gallery navigation">
