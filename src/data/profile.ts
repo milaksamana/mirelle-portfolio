@@ -39,7 +39,7 @@ export const profile: Profile = {
   stats: [
     { value: '1+ yrs', label: 'customer support', Icon: Briefcase },
     { value: '2', label: 'travel & automotive sectors', Icon: SealCheck },
-    { value: 'ET', label: 'Eastern Time', Icon: Clock },
+    { value: 'PHT', label: 'Philippine Time (UTC+8)', Icon: Clock },
   ],
   displayName: { line1: 'Thoughtful support.', line2: 'Creative assistance.' },
   hero: {
