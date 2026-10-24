@@ -3,22 +3,22 @@ import { ArrowUpRight } from '@/components/slab'
 
 const COLUMNS = [
   [
-    'I want to understand the request before jumping to a solution.',
-    'A clear update can make the next step feel much easier.',
-    'I pay attention to the small details because they shape the overall experience.',
-    'When something needs specialist review, I’d rather escalate carefully than guess.',
+    'I clarify the goal and expected outcome before I start.',
+    'I keep updates clear so you know what’s done and what’s next.',
+    'I double-check important details before marking a task complete.',
+    'I follow approved processes and escalate issues outside my scope.',
   ],
   [
-    'Working together should feel like a shared effort—not a guessing game.',
-    'I welcome feedback because it helps me improve the way I work.',
-    'I try to keep information organized so the next person can pick up where I left off.',
-    'Learning a new tool starts with curiosity, patience, and practice.',
+    'I treat collaboration as a shared workflow, not a guessing game.',
+    'I welcome feedback and apply it to the next task.',
+    'I keep notes and files organized so work is easy to pick up.',
+    'When I use a new tool, I learn the basics and test carefully before relying on it.',
   ],
   [
-    'I believe consistency is built through the little things done thoughtfully.',
-    'Good support combines empathy with a reliable process.',
-    'I want to be honest about what I know and proactive about what I’m still learning.',
-    'The goal is to make busy workdays feel a little more manageable.',
+    'I value consistent, careful work over rushed output.',
+    'I pair empathy with process when supporting customers.',
+    'I communicate honestly about progress, limitations, and what I need to clarify.',
+    'My goal is to take small but meaningful tasks off your plate.',
   ],
 ]
 
@@ -60,8 +60,8 @@ export default function TestimonialsGrid() {
     <section className="va-page approach-wall-page" aria-labelledby="approach-title">
       <header className="va-page__head">
         <span className="va-eyebrow">My approach</span>
-        <h1 id="approach-title">How I aim to work with you.</h1>
-        <p>These are my own working principles, not client testimonials. They describe the care, communication, and follow-through I want to bring to a working relationship.</p>
+        <h1 id="approach-title">Clear communication makes good support work.</h1>
+        <p>These are my working principles—not client testimonials—so you know what to expect: care with details, honest updates, and consistent follow-through.</p>
       </header>
 
       <div className="principle-columns" aria-label="Mirelle’s working principles">
@@ -69,7 +69,7 @@ export default function TestimonialsGrid() {
       </div>
 
       <div className="va-endnote">
-        <p>Every team has its own tools and expectations. I aim to understand the workflow, ask useful questions, and contribute steadily.</p>
+        <p>I’ll learn your workflow, ask useful questions, and communicate progress so you know what’s done and what needs attention.</p>
         <Link to="/contact" className="va-button">Start a conversation <ArrowUpRight size={16} aria-hidden="true" /></Link>
       </div>
     </section>
