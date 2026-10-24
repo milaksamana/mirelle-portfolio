@@ -28,8 +28,8 @@ export type Profile = {
 export const profile: Profile = {
   name: 'Mirelle Laksamana',
   firstName: 'Mirelle',
-  handle: 'Aspiring Virtual Assistant',
-  role: 'Administrative & Creative Support',
+  handle: 'General Virtual Assistant',
+  role: 'Customer Support · Admin · Creative',
   avatarSrc: '/mirelle-profile.png',
   // No verification badge is shown; no formal VA credential is being claimed.
   verifiedLabel: '',
@@ -37,12 +37,12 @@ export const profile: Profile = {
   location: 'Philippines',
   stats: [
     { value: '2 yrs', label: 'professional experience', Icon: Briefcase },
-    { value: 'SME', label: 'team support experience', Icon: SealCheck },
+    { value: 'SME', label: 'Subject Matter Expert assignment', Icon: SealCheck },
     { value: 'PHT', label: 'Philippine Time (UTC+8)', Icon: Clock },
   ],
-  displayName: { line1: 'Thoughtful support.', line2: 'Creative assistance.' },
+  displayName: { line1: 'Thoughtful support.', line2: 'More room to focus.' },
   hero: {
-    body: 'I bring 2 years of professional experience, combining customer support, organized admin skills, and creative content support to help busy teams keep things moving.',
+    body: 'I help busy teams with customer communication, everyday admin, and simple creative tasks—bringing two years of professional experience, a detail-focused approach, and clear communication.',
     portraitSrc: '/mirelle-profile.png',
     portraitAlt: 'Portrait of Mirelle Laksamana',
   },
