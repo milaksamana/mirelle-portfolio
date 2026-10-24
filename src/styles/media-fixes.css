@@ -145,6 +145,7 @@
   border: 1px solid var(--line-strong);
   border-radius: 18px;
   background: var(--paper);
+  color: var(--navy);
   box-shadow: var(--shadow-card);
   transform: none !important;
   opacity: 1 !important;
@@ -154,7 +155,7 @@
 .brochure-deck__card-top { padding: 18px 18px 12px; }
 .brochure-deck__card-top h3 {
   margin: 12px 0 7px;
-  color: var(--navy-ink);
+  color: var(--navy);
   font-size: clamp(19px, 1.7vw, 25px);
   line-height: 1.1;
   letter-spacing: -.025em;
