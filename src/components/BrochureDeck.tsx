@@ -16,6 +16,10 @@ function scrollPackages(track: HTMLDivElement | null, direction: -1 | 1) {
   })
 }
 
+function discourageSaving(event: React.SyntheticEvent) {
+  event.preventDefault()
+}
+
 export default function BrochureDeck() {
   const trackRef = useRef<HTMLDivElement>(null)
 
@@ -24,11 +28,11 @@ export default function BrochureDeck() {
       <div className="work-section-heading">
         <span className="va-eyebrow">Event photography brochures</span>
         <h2 id="brochure-deck-title">Explore the packages right here.</h2>
-        <p>Each brochure is embedded below, so visitors can read the package details without opening a separate PDF menu or tab. Scroll sideways to browse all three.</p>
+        <p>Browse each brochure directly on this page. The previews stay within the portfolio, with no separate open or download buttons.</p>
       </div>
 
       <div className="brochure-deck__controls" aria-label="Package brochure navigation">
-        <p>Three Sanz Studio by HotShoe brochures · Inline PDF previews</p>
+        <p>Three Sanz Studio by HotShoe brochures · Inline document previews</p>
         <div className="brochure-deck__buttons">
           <button type="button" onClick={() => scrollPackages(trackRef.current, -1)} aria-label="Scroll packages left">← Previous</button>
           <button type="button" onClick={() => scrollPackages(trackRef.current, 1)} aria-label="Scroll packages right">Next →</button>
@@ -41,6 +45,7 @@ export default function BrochureDeck() {
         tabIndex={0}
         role="region"
         aria-label="Horizontally scrollable event package PDF previews"
+        onContextMenu={discourageSaving}
         onKeyDown={(event) => {
           if (event.key === 'ArrowLeft') { event.preventDefault(); scrollPackages(trackRef.current, -1) }
           if (event.key === 'ArrowRight') { event.preventDefault(); scrollPackages(trackRef.current, 1) }
@@ -53,12 +58,12 @@ export default function BrochureDeck() {
               <h3>{card.title}</h3>
               <p>{card.description}</p>
             </div>
-            <div className="brochure-deck__pdf-preview">
-              <iframe src={card.href} title={card.title + ' PDF preview'} loading="lazy" />
-            </div>
-            <div className="brochure-deck__card-actions">
-              <a href={card.href} target="_blank" rel="noreferrer">Open full PDF ↗</a>
-              <a href={card.href} download>Download PDF ↓</a>
+            <div className="brochure-deck__pdf-preview" onContextMenu={discourageSaving}>
+              <iframe
+                src={card.href + '#toolbar=0&navpanes=0&scrollbar=0'}
+                title={card.title + ' inline PDF preview'}
+                loading="lazy"
+              />
             </div>
           </article>
         ))}
